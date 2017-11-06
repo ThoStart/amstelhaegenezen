@@ -1,0 +1,22 @@
+uploaden op github:
+0. (eenmalig) map koppelen aan map in computer
+      optie 1: git remote add origin https://(link)
+        voor eigen map
+      optie 2: git clone https://(link)
+        van groep
+
+1. git add
+    - git add
+2. git commit
+    - git commit -m 'message'
+3. git push
+    1ste keer:
+      - git push -u origin master
+    2de keer (en later):
+      - git push
+
+om te checken of je add/commit in verwerking is:
+  - git status
+
+voor updaten van de map op je computer doe:
+  - git pull?
