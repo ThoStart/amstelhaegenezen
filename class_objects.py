@@ -34,6 +34,6 @@ house_m = Maison()
 
 class Water:
     def __init__(self):
-        self.width
-        self.length
+        self.width = 0
+        self.length = 0
 water = Water()
