@@ -1,39 +1,19 @@
+class House:
+    def __init__(self, name, length, width, free, value, increment):
+        self.name = name
+        self.length = length
+        self.width = width
+        self.free = free
+        self.value = value
+        self.increment = increment
+
 class Ground:
 	def __init__(self):
 		self.grid = []
-		self.width = 180
-		self.length = 160
-ground = Ground()
-
-class Eengezinswoning:
-    def __init__(self):
-        self.width = 8
-        self.length = 8
-        self.free = 2
-        self.value = 285000
-        self.increment = 3
-house_e = Eengezinswoning()
-
-class Bungalow:
-    def __init__(self):
-        self.width = 10
-        self.length = 7.5
-        self.free = 3
-        self.value = 399000
-        self.increment = 4
-house_b = Bungalow()
-
-class Maison:
-    def __init__(self):
-        self.width = 11
-        self.length = 10.5
-        self.free = 6
-        self.value = 610000
-        self.increment = 6
-house_m = Maison()
+		self.width = 360
+		self.length = 320
 
 class Water:
     def __init__(self):
         self.width = 0
         self.length = 0
-water = Water()

@@ -1,23 +1,29 @@
 #!/usr/bin/env python3
 
-from class_objects import *
+from class_objects import House, Ground, Water
+
+house_e = House("Eengezinswoning", 16, 16, 4, 285000, 3)
+house_b = House("Bungalow", 20, 15, 6, 399000, 4)
+house_m = House("Maison", 22, 21, 12, 610000, 6)
+
+ground = Ground()
 
 empty = '.'
 vrij = 'v'
 
 #unused
-def readground(cx,cy):
-    for y in range(int(house_m.length) + 2):
-        for x in range(house_m.width + 2):
-            if (cursor_x + x) >= ground.width - 1:
-                    cursor_x = 0
-                    cursor_y = cursor_y + int(house_m.length) - y + 1
-                    x = -1
-                    y = -1               
-            elif ground.grid[cursor_y + y][cursor_x + x] != empty and vrij:
-                cursor_x = cursor_x + x
-                x = -1
-                y = 0 
+# def readground(cx,cy):
+#     for y in range(int(house_m.length) + 2):
+#         for x in range(house_m.width + 2):
+#             if (cursor_x + x) >= ground.width - 1:
+#                     cursor_x = 0
+#                     cursor_y = cursor_y + int(house_m.length) - y + 1
+#                     x = -1
+#                     y = -1               
+#             elif ground.grid[cursor_y + y][cursor_x + x] != empty and vrij:
+#                 cursor_x = cursor_x + x
+#                 x = -1
+#                 y = 0 
 
 
 for y in range(ground.length):
