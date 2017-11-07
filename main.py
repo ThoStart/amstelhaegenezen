@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import numpy as np
 from class_objects import House, Ground, Water
 import matrix as matrix 
 
@@ -10,3 +9,9 @@ house_m = House("Maison", 22, 21, 12, 610000, 6)
 
 ground = Ground()
 
+def main():
+	grid = matrix.init(160,180)
+	print(grid)
+
+if __name__ == "__main__":
+	main()
