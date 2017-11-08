@@ -5,17 +5,26 @@ def init(x, y):
     # put x and y size to half meters
     x = x * 2
     y = y * 2
-    matrix = np.empty([x, y], dtype=str)
+
+    # create matrix fill_value determines the amount of chars saved in array
+    matrix = np.full((x, y), fill_value='xxxx', dtype=None)
+    # matrix = np.array([a, b],dtype='S')
     matrix.fill('v')
-    # print(matrix)
+
+    # put 0,1 to "B01"
+    matrix[0,1] = 'B01'
+
+    print(matrix[0,1])
+
     return(matrix)
 
-# max_maison = 3, max_bungalow = 5, max_eengezinswoning = 12
+# functie: check zijn welk huis past
+def search():
+    # search for B01
+    a = np.where(matrix == 'B01')
+    print(a)
 
-# # functie: check zijn welk huis past
-# def check():
-#     # check multiple fields at once
-#
+
 # # functie: beste huis pakken
 # def choice():
 #
