@@ -1,6 +1,7 @@
 class House:
-    def __init__(self, name, length, width, free, value, increment):
-        self.name = name
+    def __init__(self, type, id, length, width, free, value, increment):
+        self.type = type
+        self.id = id
         self.length = length * 2
         self.width = width * 2
         self.free = free * 2
