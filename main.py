@@ -10,7 +10,11 @@ house_m = House("Maison", 22, 21, 12, 610000, 6)
 ground = Ground()
 
 def main():
+<<<<<<< HEAD
 	grid = matrix.init(5,5)
+=======
+	grid = matrix.init(160,180)
+>>>>>>> 4a2576dde05543e0b86bfe10e0fe7aea798ff0bb
 	print(grid)
 
 if __name__ == "__main__":
