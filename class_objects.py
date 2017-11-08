@@ -1,17 +1,11 @@
 class House:
     def __init__(self, name, length, width, free, value, increment):
         self.name = name
-        self.length = length
-        self.width = width
-        self.free = free
+        self.length = length * 2
+        self.width = width * 2
+        self.free = free * 2
         self.value = value
         self.increment = increment
-
-class Ground:
-	def __init__(self):
-		self.grid = []
-		self.width = 360
-		self.length = 320
 
 class Water:
     def __init__(self):
