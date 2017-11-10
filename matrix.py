@@ -12,25 +12,32 @@ def init(x, y):
     matrix.fill('v')
 
     # put 0,1 to "B01"
-    matrix[0,1] = 'B01'
+    # matrix[2,2] = 'B01'
 
-    print(matrix[0,1])
+    # print(matrix[0,1])
 
     return(matrix)
-
-# functie: check zijn welk huis past
-def search():
-    # search for B01
-    a = np.where(matrix == 'B01')
-    print(a)
-
 
 # # functie: beste huis pakken
 # def choice():
 #
-# # place houses random
-# def random_place():
-#
-#     # functie: huis plaatsen
-# def fill(matrix)
-#     #matrix.nparray(..., ...) = (...,...)
+
+# functie: check of gekozen huis past
+def check(x_opp, y_opp, grid, x_coordinate, y_coordinate):
+
+    # search for empty spaces
+    for x_coordinate in range(x_opp):
+        for y_coordinate in range(y_opp):
+            if (grid[x_coordinate, y_coordinate] != 'v'):
+                print(x_coordinate ,",", y_coordinate)
+                return 1;
+    return 0;
+        # a = np.where(matrix == 'v')
+            # print(a)
+
+def place(x_opp, y_opp, grid, x_coordinate, y_coordinate):
+    for x_coordinate in range(x_opp):
+        for y_coordinate in range(y_opp):
+            grid[x_coordinate, y_coordinate] = 'B01'
+
+    return(grid)
