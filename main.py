@@ -29,7 +29,25 @@ def main():
 	house_m_counter = house_m_counter + 1
 
 	# generate grid
-	grid = matrix.init(5,5)
+	xsize = 5
+	ysize = 5
+	grid = matrix.init(xsize,ysize)
+
+	print(grid)
+
+	x_opp = 3
+	y_opp = 3
+	x_coordinate = 3
+	y_coordinate = 3
+
+	print("yolo")
+	print(matrix.findemptyspot(xsize, ysize, grid))
+
+	check = matrix.check(x_opp, y_opp, grid, x_coordinate, y_coordinate)
+	print(check)
+
+	if check == 0:
+		matrix.place(x_opp, y_opp, grid, x_coordinate, y_coordinate)
 
 	print(grid)
 
