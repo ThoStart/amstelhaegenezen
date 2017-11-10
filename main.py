@@ -51,5 +51,20 @@ def main():
 
 	print(grid)
 
+	x_opp = 3
+	y_opp = 3
+	x_coordinate = 0
+	y_coordinate = 0
+
+	print("YOLO")
+	# print(matrix.check(x_opp, y_opp, grid, x_coordinate, y_coordinate))
+	check = matrix.check(x_opp, y_opp, grid, x_coordinate, y_coordinate)
+	print(check)
+
+	if check == 0:
+		matrix.place(x_opp, y_opp, grid, x_coordinate, y_coordinate)
+
+	print(grid)
+
 if __name__ == "__main__":
 	main()
