@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from class_objects import House, Water
+from random import randint
 import matrix as matrix
 
 def main():
@@ -10,43 +11,71 @@ def main():
 	houses_e, houses_b, houses_m = dict(), dict(), dict()
 
 	# create a house E object
-	houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
+	# houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
+	# house_e_counter = house_e_counter + 1
 
-	# print(houses_e[house_e_counter].id)
+	# print(houses_e[house_e_counter-1].id)
 	# print("E{0:03}".format(houses_e[0].id))
 	# print(houses_e[0].width)
 
-	house_e_counter = house_e_counter + 1
-
 	# create a house B object
 	houses_b[house_b_counter] = House("Bungalow", house_b_counter, 10, 7.5, 3, 399000, 4)
-
 	house_b_counter = house_b_counter + 1
 
 	# create a house M object
 	houses_m[house_m_counter] = House("Maison", house_m_counter, 11, 10.5, 6, 610000, 6)
-
 	house_m_counter = house_m_counter + 1
 
 	# generate grid
-	grid = matrix.init(5,5)
+	xsize = 5
+	ysize = 5
+	grid = matrix.init(xsize,ysize)
 
+	# print grid
+	print("start:")
 	print(grid)
+
+	# place house E00
+	houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
+	house_e_counter = house_e_counter + 1
+
+	x_opp = 3
+	y_opp = 3
+
+	# random x and y
+	x_coordinate = randint(3,7)
+	y_coordinate = randint(0,3)
+
+	# check if house can be placed
+	check = matrix.check(x_opp, y_opp, grid, x_coordinate, y_coordinate)
+
+	# place house
+	if check == 0:
+		matrix.place(x_opp, y_opp, grid, x_coordinate, y_coordinate, ("E{0:02}".format(houses_e[house_e_counter-1].id)))
+
+	print("check + place:")
+	print(grid)
+
+	# place house E01
+	houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
+	house_e_counter = house_e_counter + 1
 
 	x_opp = 3
 	y_opp = 3
 	x_coordinate = 0
 	y_coordinate = 0
 
-	print("YOLO")
-	# print(matrix.check(x_opp, y_opp, grid, x_coordinate, y_coordinate))
+	# check if house can be placed
 	check = matrix.check(x_opp, y_opp, grid, x_coordinate, y_coordinate)
-	print(check)
 
+	# place house
 	if check == 0:
-		matrix.place(x_opp, y_opp, grid, x_coordinate, y_coordinate)
+		matrix.place(x_opp, y_opp, grid, x_coordinate, y_coordinate, ("E{0:02}".format(houses_e[house_e_counter-1].id)))
 
+	print("check + place:")
 	print(grid)
+
+
 
 if __name__ == "__main__":
 	main()
