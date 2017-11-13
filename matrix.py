@@ -32,11 +32,10 @@ def findemptyspot(xsize, ysize, grid):
 
 # checks if enough space around empty coordinate
 def check(x_opp, y_opp, grid, x_coordinate, y_coordinate):
-
     # search for empty spaces
-    for x_coordinate in range(x_coordinate, x_opp+x_coordinate):
-        for y_coordinate in range(y_coordinate, y_opp+y_coordinate):
-            if (grid[x_coordinate, y_coordinate] != 'v'):
+    for x in range(x_coordinate, x_opp+x_coordinate):
+        for y in range(y_coordinate, y_opp+y_coordinate):
+            if (grid[x, y] != 'v'):
                 return 1;
     return 0;
         # a = np.where(matrix == 'v')
@@ -44,10 +43,14 @@ def check(x_opp, y_opp, grid, x_coordinate, y_coordinate):
 
 # puts a house on the empty space
 def place(x_opp, y_opp, grid, x_coordinate, y_coordinate, name):
-    a = x_coordinate
-    b = y_coordinate
-    for a in range(x_coordinate, x_opp+x_coordinate):
-        for b in range(y_coordinate, y_opp+y_coordinate):
-            grid[a, b] = name
+    #a = x_coordinate
+    #b = y_coordinate
+    for x in range(x_coordinate, x_opp+x_coordinate):
+        for y in range(y_coordinate, y_opp+y_coordinate):
+            grid[x, y] = name
 
     return(grid)
+
+def export(grid):
+    np.savetxt('grid.csv', grid, fmt='%s', delimiter=',')
+

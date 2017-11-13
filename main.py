@@ -35,30 +35,32 @@ def main():
 	print("start:")
 	print(grid)
 
-	# place house E00
-	houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
-	house_e_counter = house_e_counter + 1
+
+	#house E00
 
 	x_opp = 3
 	y_opp = 3
 
 	# random x and y
-	x_coordinate = randint(3,7)
-	y_coordinate = randint(0,3)
+	x_coordinate = randint(0, xsize * 2 - x_opp)
+	y_coordinate = randint(0, ysize * 2 - x_opp)
 
 	# check if house can be placed
 	check = matrix.check(x_opp, y_opp, grid, x_coordinate, y_coordinate)
 
 	# place house
 	if check == 0:
+		# create and place house
+		houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
+		house_e_counter = house_e_counter + 1
+
 		matrix.place(x_opp, y_opp, grid, x_coordinate, y_coordinate, ("E{0:02}".format(houses_e[house_e_counter-1].id)))
 
 	print("check + place:")
 	print(grid)
 
-	# place house E01
-	houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
-	house_e_counter = house_e_counter + 1
+
+	# house E01
 
 	x_opp = 3
 	y_opp = 3
@@ -70,11 +72,17 @@ def main():
 
 	# place house
 	if check == 0:
+
+		# create and place house
+		houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
+		house_e_counter = house_e_counter + 1
+
 		matrix.place(x_opp, y_opp, grid, x_coordinate, y_coordinate, ("E{0:02}".format(houses_e[house_e_counter-1].id)))
 
 	print("check + place:")
 	print(grid)
 
+	matrix.export(grid)
 
 
 if __name__ == "__main__":
