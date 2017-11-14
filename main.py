@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
-from class_objects import House, Water
+from class_objects import House, Water, Matrix
 import random
-import matrix
 
 def main():
 
@@ -32,7 +31,10 @@ def main():
 	# generate grid
 	xsize = 160 * scale
 	ysize = 180 * scale
-	grid = matrix.init(xsize,ysize)
+	#grid = matrix.init(xsize,ysize)
+
+	matrix = Matrix(xsize,ysize)
+	grid = matrix.grid
 
 	# print grid
 	print("start:")
@@ -49,14 +51,14 @@ def main():
 	y_coordinate = random.randint(0, ysize - x_opp)
 
 	# check if house can be placed
-	check = matrix.check(x_opp, y_opp, grid, x_coordinate, y_coordinate)
+	check = matrix.check(x_opp, y_opp, x_coordinate, y_coordinate)
 
 	# place house
-	if check:
+	if check == 0:
 		# create and place house
 		houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
 
-		matrix.place(x_opp, y_opp, grid, x_coordinate, y_coordinate, ("E{0:02}".format(houses_e[house_e_counter].id)))
+		matrix.place(x_opp, y_opp, x_coordinate, y_coordinate, ("E{0:02}".format(houses_e[house_e_counter].id)))
 
 		house_e_counter = house_e_counter + 1
 
@@ -72,15 +74,15 @@ def main():
 	y_coordinate = random.randint(0, ysize - x_opp)
 
 	# check if house can be placed
-	check = matrix.check(x_opp, y_opp, grid, x_coordinate, y_coordinate)
+	check = matrix.check(x_opp, y_opp, x_coordinate, y_coordinate)
 
 	# place house
-	if check:
+	if check == 0:
 
 		# create and place house
 		houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
 
-		matrix.place(x_opp, y_opp, grid, x_coordinate, y_coordinate, ("E{0:02}".format(houses_e[house_e_counter].id)))
+		matrix.place(x_opp, y_opp, x_coordinate, y_coordinate, ("E{0:02}".format(houses_e[house_e_counter].id)))
 
 		house_e_counter = house_e_counter + 1
 

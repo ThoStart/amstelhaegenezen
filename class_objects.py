@@ -1,3 +1,5 @@
+import numpy as np
+
 class House:
     def __init__(self, type, id, length, width, free, value, increment):
         self.type = type
@@ -9,12 +11,12 @@ class House:
         self.increment = increment
 
 class Water:
-    def __init__(self):
-        self.width = 0
-        self.length = 0
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
 
 class Matrix:
-    def __init__(self, xsize, ysize)
+    def __init__(self, xsize, ysize):
         self.xsize = xsize
         self.ysize = ysize
         self.grid = np.full((self.xsize, self.ysize), fill_value='xxxx', dtype=None)
