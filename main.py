@@ -30,8 +30,8 @@ def main():
 	#house_m_counter = house_m_counter + 1
 
 	# generate grid
-	xsize = 5 * scale
-	ysize = 5 * scale
+	xsize = 160 * scale
+	ysize = 180 * scale
 	grid = matrix.init(xsize,ysize)
 
 	# print grid
@@ -41,8 +41,8 @@ def main():
 
 	# house E00
 
-	x_opp = 1 * scale
-	y_opp = 1 * scale
+	x_opp = 8 * scale
+	y_opp = 8 * scale
 
 	# random x and y
 	x_coordinate = randint(0, xsize - x_opp)
@@ -66,8 +66,8 @@ def main():
 
 	# house E01
 
-	x_opp = 1 * scale
-	y_opp = 1 * scale
+	x_opp = 8 * scale
+	y_opp = 8 * scale
 	x_coordinate = randint(0, xsize - x_opp)
 	y_coordinate = randint(0, ysize - x_opp)
 
