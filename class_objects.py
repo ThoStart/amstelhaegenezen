@@ -38,10 +38,10 @@ class Matrix:
 
 
     # checks if enough space around empty coordinate
-    def check(self, x_opp, y_opp, x_coordinate, y_coordinate):
+    def check(self, x_opp, y_opp, free, x_coordinate, y_coordinate):
         # search for empty spaces
-        for x in range(x_coordinate, x_opp+x_coordinate):
-            for y in range(y_coordinate, y_opp+y_coordinate):
+        for x in range((x_coordinate - free), (x_opp + x_coordinate + free)):
+            for y in range((y_coordinate - free), (y_opp + y_coordinate + free)):
                 if (self.grid[x, y] != 'v'):
                     return 1
         return 0
