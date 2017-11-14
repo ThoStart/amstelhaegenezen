@@ -3,6 +3,7 @@
 from class_objects import House, Water
 from random import randint
 import matrix as matrix
+import numpy as np
 
 def main():
 
