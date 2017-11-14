@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 from class_objects import House, Water
-from random import randint
-import matrix as matrix
+import random
+import matrix 
 
 def main():
 
@@ -45,14 +45,14 @@ def main():
 	y_opp = 8 * scale
 
 	# random x and y
-	x_coordinate = randint(0, xsize - x_opp)
-	y_coordinate = randint(0, ysize - x_opp)
+	x_coordinate = random.randint(0, xsize - x_opp)
+	y_coordinate = random.randint(0, ysize - x_opp)
 
 	# check if house can be placed
 	check = matrix.check(x_opp, y_opp, grid, x_coordinate, y_coordinate)
 
 	# place house
-	if check == 0:
+	if check:
 		# create and place house
 		houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
 
@@ -68,14 +68,14 @@ def main():
 
 	x_opp = 8 * scale
 	y_opp = 8 * scale
-	x_coordinate = randint(0, xsize - x_opp)
-	y_coordinate = randint(0, ysize - x_opp)
+	x_coordinate = random.randint(0, xsize - x_opp)
+	y_coordinate = random.randint(0, ysize - x_opp)
 
 	# check if house can be placed
 	check = matrix.check(x_opp, y_opp, grid, x_coordinate, y_coordinate)
 
 	# place house
-	if check == 0:
+	if check:
 
 		# create and place house
 		houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
@@ -89,7 +89,7 @@ def main():
 	print(grid)
 
 	matrix.export(grid)
-
+	
 
 if __name__ == "__main__":
 	main()
