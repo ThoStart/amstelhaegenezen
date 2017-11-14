@@ -21,12 +21,12 @@ def findemptyspot(xsize, ysize, grid):
     for x in range(xsize):
         for y in range(ysize):
             if (grid[x, y] == 'v'):
-                return x,y;
+                return x,y
     else:
-        return 0;
+        return 0
 
 # random kiezen welk huis meest waard is
-#def worth
+# def worth
 # dus eerste Eengezinswoning die is namelijk het meeste waard
 
 
@@ -36,8 +36,8 @@ def check(x_opp, y_opp, grid, x_coordinate, y_coordinate):
     for x in range(x_coordinate, x_opp+x_coordinate):
         for y in range(y_coordinate, y_opp+y_coordinate):
             if (grid[x, y] != 'v'):
-                return 1;
-    return 0;
+                return 1
+    return 0
         # a = np.where(matrix == 'v')
             # print(a)
 

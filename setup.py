@@ -18,7 +18,7 @@ house_b_value = 399000
 house_b_increment = 4
 
 # define length, width, free space, value and incrementation for Maison
-house_m_length =
+house_m_length = 
 house_m_width =
 house_m_free =
 house_m_value =
