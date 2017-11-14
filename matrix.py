@@ -3,8 +3,8 @@ import numpy as np
 # initialize matrix of 180x160 meters
 def init(xsize, ysize):
     # put x and y size to half meters
-    x = xsize * 2
-    y = ysize * 2
+    x = xsize
+    y = ysize
 
     # create matrix fill_value determines the amount of chars saved in array
     matrix = np.full((x, y), fill_value='xxxx', dtype=None)
@@ -18,8 +18,8 @@ def init(xsize, ysize):
 
 # finds empty coordinate
 def findemptyspot(xsize, ysize, grid):
-    for x in range(xsize*2):
-        for y in range(ysize*2):
+    for x in range(xsize):
+        for y in range(ysize):
             if (grid[x, y] == 'v'):
                 return x,y;
     else:
