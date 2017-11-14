@@ -2,38 +2,15 @@
 
 from class_objects import House, Water, Matrix
 import random
+import setup as info
 
 def main():
 
-	scale = 2
-
 	# declare house variables
-	house_e_counter, house_b_counter, house_m_counter = 0, 0, 0
+	house_e_counter, house_b_counter, house_m_counter = 1, 1, 1
 	houses_e, houses_b, houses_m = dict(), dict(), dict()
 
-	# create a house E object
-	# houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
-	# house_e_counter = house_e_counter + 1
-
-	# examples of referencing
-	# print(houses_e[house_e_counter-1].id)
-	# print("E{0:03}".format(houses_e[0].id))
-	# print(houses_e[0].width)
-
-	# create a house B object
-	#houses_b[house_b_counter] = House("Bungalow", house_b_counter, 10, 7.5, 3, 399000, 4)
-	#house_b_counter = house_b_counter + 1
-
-	# create a house M object
-	#houses_m[house_m_counter] = House("Maison", house_m_counter, 11, 10.5, 6, 610000, 6)
-	#house_m_counter = house_m_counter + 1
-
-	# generate grid
-	xsize = 160 * scale
-	ysize = 180 * scale
-	#grid = matrix.init(xsize,ysize)
-
-	matrix = Matrix(xsize,ysize)
+	matrix = Matrix(info.grid_length,info.grid_width)
 	grid = matrix.grid
 
 	# print grid
@@ -41,55 +18,95 @@ def main():
 	print(grid)
 
 
-	# house E00
+	# Water
+	matrix.place(info.water_length, info.water_width, 0, 0, "~")
 
-	x_opp = 8 * scale
-	y_opp = 8 * scale
+	# place 10 sets of houses
+	for i in range(10):
 
-	# random x and y
-	x_coordinate = random.randint(0, xsize - x_opp)
-	y_coordinate = random.randint(0, ysize - x_opp)
+		# Eengezinswoningen
 
-	# check if house can be placed
-	check = matrix.check(x_opp, y_opp, x_coordinate, y_coordinate)
+		# random x and y
+		for i in range(info.house_e_ratio):
 
-	# place house
-	if check == 0:
-		# create and place house
-		houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
+			# check if house can be placed
+			for i in range (10000):
+				# random x and y
+				x_coordinate = random.randint(0, info.grid_length - info.house_e_length)
+				y_coordinate = random.randint(0, info.grid_width - info.house_e_width)
 
-		matrix.place(x_opp, y_opp, x_coordinate, y_coordinate, ("E{0:02}".format(houses_e[house_e_counter].id)))
+				check = matrix.check(info.house_e_length, info.house_e_width, x_coordinate, y_coordinate)
+				if check == 0:
+					break
 
-		house_e_counter = house_e_counter + 1
+			# place house
+			if check == 0:
+				# create and place house
+				houses_e[house_e_counter] = House(info.house_e_type, house_e_counter, info.house_e_length, info.house_e_width, info.house_e_free, info.house_e_value, info.house_e_increment)
 
-	print("check + place:")
+				matrix.place(info.house_e_length, info.house_e_width, x_coordinate, y_coordinate, ("E{0:02}".format(houses_e[house_e_counter].id)))
+
+				house_e_counter = house_e_counter + 1
+			
+			print("success #{}".format(house_e_counter-1))
+
+
+		# Bungalows
+
+		for i in range(info.house_b_ratio):
+
+			for i in range(10000):
+				# random x and y
+				x_coordinate = random.randint(0, info.grid_length - info.house_b_length)
+				y_coordinate = random.randint(0, info.grid_width - info.house_b_width)
+
+				# check if house can be placed
+				check = matrix.check(info.house_b_length, info.house_b_width, x_coordinate, y_coordinate)
+				if check == 0:
+					break
+
+			# place house
+			if check == 0:
+				# create and place house
+				houses_b[house_b_counter] = House(info.house_b_type, house_b_counter, info.house_b_length, info.house_b_width, info.house_b_free, info.house_b_value, info.house_b_increment)
+
+				matrix.place(info.house_b_length, info.house_b_width, x_coordinate, y_coordinate, ("B{0:02}".format(houses_b[house_b_counter].id)))
+
+				house_b_counter = house_b_counter + 1
+			
+				print("success #{}".format(house_b_counter-1))
+
+
+		# Maisons
+
+		# random x and y
+		for i in range(info.house_m_ratio):
+
+			for i in range(10000):
+				# random x and y
+				x_coordinate = random.randint(0, info.grid_length - info.house_m_length)
+				y_coordinate = random.randint(0, info.grid_width - info.house_m_width)
+
+				# check if house can be placed
+				check = matrix.check(info.house_m_length, info.house_m_width, x_coordinate, y_coordinate)
+				if check == 0:
+					break
+
+			# place house
+			if check == 0:
+				# create and place house
+				houses_m[house_m_counter] = House(info.house_m_type, house_m_counter, info.house_m_length, info.house_m_width, info.house_m_free, info.house_m_value, info.house_m_increment)
+
+				matrix.place(info.house_m_length, info.house_m_width, x_coordinate, y_coordinate, ("M{0:02}".format(houses_m[house_m_counter].id)))
+
+				house_m_counter = house_m_counter + 1
+			
+				print("success #{}".format(house_m_counter-1))
+
+
 	print(grid)
 
-
-	# house E01
-
-	x_opp = 8 * scale
-	y_opp = 8 * scale
-	x_coordinate = random.randint(0, xsize - x_opp)
-	y_coordinate = random.randint(0, ysize - x_opp)
-
-	# check if house can be placed
-	check = matrix.check(x_opp, y_opp, x_coordinate, y_coordinate)
-
-	# place house
-	if check == 0:
-
-		# create and place house
-		houses_e[house_e_counter] = House("Eengezinswoning", house_e_counter, 8, 8, 2, 285000, 3)
-
-		matrix.place(x_opp, y_opp, x_coordinate, y_coordinate, ("E{0:02}".format(houses_e[house_e_counter].id)))
-
-		house_e_counter = house_e_counter + 1
-
-
-	print("check + place:")
-	print(grid)
-
+	# export grid to csv file
 	matrix.export(grid)
 
 
