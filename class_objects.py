@@ -1,14 +1,11 @@
 import numpy as np
 
 class House:
-    def __init__(self, type, id, length, width, free, value, increment):
+    def __init__(self, type, id, free, value):
         self.type = type
         self.id = id
-        self.length = length
-        self.width = width
         self.free = free
         self.value = value
-        self.increment = increment
 
 class Water:
     def __init__(self, length, width):
