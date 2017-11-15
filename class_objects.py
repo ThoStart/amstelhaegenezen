@@ -1,4 +1,5 @@
 import numpy as np
+import setup as info
 
 class House:
     def __init__(self, type, id, free, value, xcor, ycor):
@@ -63,10 +64,11 @@ class Matrix:
         while(free > 0):
             for x in range((house.xcor - free), x_opp + free+ house.xcor):
                 for y in range((house.ycor - free), y_opp + free + house.ycor):
-                    if (self.grid[x, y] != 'v' and self.grid[x, y] != name):
+                    if (x > info.grid_length or y > info.grid_width or x < 0 or y < 0):
                         return free - 1
+                    elif (self.grid[x, y] != 'v' and self.grid[x, y] != name):
+                        return free - 1
+
             free+=1
 
         return free
-
-    

@@ -4,8 +4,9 @@ import setup as info
 import house_dictionary as hd
 
 def fill(grid, matrix):
-	# place 7 sets of houses
-
+	# Water
+	matrix.place(info.water_length, info.water_width, 0, 0, "~")
+	
 	# Eengezinswoningen
 
 	# random x and y
@@ -24,11 +25,11 @@ def fill(grid, matrix):
 		# place house
 		if check == 0:
 			# create and place house
-			hd.houses_e[hd.house_e_counter] = House(info.house_e_type, hd.house_e_counter, info.house_e_free, info.house_e_value, x_coordinate, y_coordinate)
+			hd.houses_e[hd.house_e_counter] = House(info.house_e_type, ("E{0:02}".format(hd.house_e_counter)), info.house_e_free, info.house_e_value, x_coordinate, y_coordinate)
 
-			matrix.place(info.house_e_length, info.house_e_width, x_coordinate, y_coordinate, ("E{0:02}".format(hd.houses_e[hd.house_e_counter].id)))
+			matrix.place(info.house_e_length, info.house_e_width, x_coordinate, y_coordinate, hd.houses_e[hd.house_e_counter].id)
 
-			print("success E{0:02}".format(hd.houses_e[hd.house_e_counter].id))
+			print("success {}".format(hd.houses_e[hd.house_e_counter].id))
 
 			hd.house_e_counter = hd.house_e_counter + 1
 

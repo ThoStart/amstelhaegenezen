@@ -17,9 +17,6 @@ def main():
 	random.fill(grid, matrix)
 	print(grid)
 
-	# Water
-	matrix.place(info.water_length, info.water_width, 0, 0, "~")
-
 	print(grid)
 
 	free = matrix.free_space(grid, hd.houses_e[1], 'E01', info.house_e_length, info.house_e_width)
