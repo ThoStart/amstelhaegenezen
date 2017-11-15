@@ -21,7 +21,7 @@ def main():
 	# Water
 	matrix.place(info.water_length, info.water_width, 0, 0, "~")
 
-	# place 10 sets of houses
+	# place 7 sets of houses
 	for i in range(7):
 
 		# Eengezinswoningen
@@ -79,7 +79,6 @@ def main():
 
 		# Maisons
 
-		# random x and y
 		for i in range(info.house_m_ratio):
 
 			for i in range(10000):

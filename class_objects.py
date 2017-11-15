@@ -4,9 +4,9 @@ class House:
     def __init__(self, type, id, length, width, free, value, increment):
         self.type = type
         self.id = id
-        self.length = length * 2
-        self.width = width * 2
-        self.free = free * 2
+        self.length = length
+        self.width = width
+        self.free = free
         self.value = value
         self.increment = increment
 
