@@ -1,11 +1,13 @@
 import numpy as np
 
 class House:
-    def __init__(self, type, id, free, value):
+    def __init__(self, type, id, free, value, xcor, ycor):
         self.type = type
         self.id = id
         self.free = free
         self.value = value
+        self.xcor = xcor
+        self.ycor = ycor
 
 class Water:
     def __init__(self, length, width):
@@ -57,5 +59,3 @@ class Matrix:
 
     def export(self, grid):
         np.savetxt('grid.csv', grid, fmt='%s', delimiter=',')
-
-

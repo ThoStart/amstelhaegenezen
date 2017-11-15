@@ -24,7 +24,7 @@ def fill(grid, matrix):
 		# place house
 		if check == 0:
 			# create and place house
-			hd.houses_e[hd.house_e_counter] = House(info.house_e_type, hd.house_e_counter, info.house_e_free, info.house_e_value)
+			hd.houses_e[hd.house_e_counter] = House(info.house_e_type, hd.house_e_counter, info.house_e_free, info.house_e_value, x_coordinate, y_coordinate)
 
 			matrix.place(info.house_e_length, info.house_e_width, x_coordinate, y_coordinate, ("E{0:02}".format(hd.houses_e[hd.house_e_counter].id)))
 
@@ -50,7 +50,7 @@ def fill(grid, matrix):
 		# place house
 		if check == 0:
 			# create and place house
-			hd.houses_b[hd.house_b_counter] = House(info.house_b_type, hd.house_b_counter, info.house_b_free, info.house_b_value)
+			hd.houses_b[hd.house_b_counter] = House(info.house_b_type, hd.house_b_counter, info.house_b_free, info.house_b_value, x_coordinate, y_coordinate)
 
 			matrix.place(info.house_b_length, info.house_b_width, x_coordinate, y_coordinate, ("B{0:02}".format(hd.houses_b[hd.house_b_counter].id)))
 
@@ -75,7 +75,7 @@ def fill(grid, matrix):
 		# place house
 		if check == 0:
 			# create and place house
-			hd.houses_m[hd.house_m_counter] = House(info.house_m_type, hd.house_m_counter, info.house_m_free, info.house_m_value)
+			hd.houses_m[hd.house_m_counter] = House(info.house_m_type, hd.house_m_counter, info.house_m_free, info.house_m_value,  x_coordinate, y_coordinate)
 
 			matrix.place(info.house_m_length, info.house_m_width, x_coordinate, y_coordinate, ("M{0:02}".format(hd.houses_m[hd.house_m_counter].id)))
 
