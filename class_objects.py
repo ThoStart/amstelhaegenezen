@@ -49,8 +49,6 @@ class Matrix:
 
     # puts a house on the empty space
     def place(self, x_opp, y_opp, x_coordinate, y_coordinate, name):
-        #a = x_coordinate
-        #b = y_coordinate
         for x in range(x_coordinate, x_opp+x_coordinate):
             for y in range(y_coordinate, y_opp+y_coordinate):
                 self.grid[x, y] = name
@@ -59,3 +57,16 @@ class Matrix:
 
     def export(self, grid):
         np.savetxt('grid.csv', grid, fmt='%s', delimiter=',')
+
+    def free_space(self, grid, house, name, x_opp, y_opp):
+        free = 1
+        while(free > 0):
+            for x in range((house.xcor - free), x_opp + free+ house.xcor):
+                for y in range((house.ycor - free), y_opp + free + house.ycor):
+                    if (self.grid[x, y] != 'v' and self.grid[x, y] != name):
+                        return free - 1
+            free+=1
+
+        return free
+
+    

@@ -22,6 +22,9 @@ def main():
 
 	print(grid)
 
+	free = matrix.free_space(grid, hd.houses_e[1], 'E01', info.house_e_length, info.house_e_width)
+
+	print(free)
 	# export grid to csv file
 	matrix.export(grid)
 
