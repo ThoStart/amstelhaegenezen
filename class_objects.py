@@ -64,11 +64,20 @@ class Matrix:
         while(free > 0):
             for x in range((house.xcor - free), x_opp + free+ house.xcor):
                 for y in range((house.ycor - free), y_opp + free + house.ycor):
-                    if (x > info.grid_length or y > info.grid_width or x < 0 or y < 0):
+                    if (x >= info.grid_length or y >= info.grid_width or x < 0 or y < 0):
+                        house.free = free - 1
                         return free - 1
                     elif (self.grid[x, y] != 'v' and self.grid[x, y] != name):
+                        house.free = free - 1
                         return free - 1
 
             free+=1
 
-        return free
+        return
+
+    def score (self, house, scale, default_value, default_free, default_increment):
+        free = (int((house.free - default_free) / scale) * default_increment)
+
+        house.value = int(default_value * (free + 1))
+
+        return house.value

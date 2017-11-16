@@ -6,7 +6,7 @@ import house_dictionary as hd
 def fill(grid, matrix):
 	# Water
 	matrix.place(info.water_length, info.water_width, 0, 0, "~")
-	
+
 	# Eengezinswoningen
 
 	# random x and y
@@ -51,11 +51,11 @@ def fill(grid, matrix):
 		# place house
 		if check == 0:
 			# create and place house
-			hd.houses_b[hd.house_b_counter] = House(info.house_b_type, hd.house_b_counter, info.house_b_free, info.house_b_value, x_coordinate, y_coordinate)
+			hd.houses_b[hd.house_b_counter] = House(info.house_b_type, ("B{0:02}".format(hd.house_b_counter)), info.house_b_free, info.house_b_value, x_coordinate, y_coordinate)
 
-			matrix.place(info.house_b_length, info.house_b_width, x_coordinate, y_coordinate, ("B{0:02}".format(hd.houses_b[hd.house_b_counter].id)))
+			matrix.place(info.house_b_length, info.house_b_width, x_coordinate, y_coordinate, hd.houses_b[hd.house_b_counter].id)
 
-			print("success B{0:02}".format(hd.houses_b[hd.house_b_counter].id))
+			print("success {}".format(hd.houses_b[hd.house_b_counter].id))
 
 			hd.house_b_counter = hd.house_b_counter + 1
 
@@ -76,10 +76,10 @@ def fill(grid, matrix):
 		# place house
 		if check == 0:
 			# create and place house
-			hd.houses_m[hd.house_m_counter] = House(info.house_m_type, hd.house_m_counter, info.house_m_free, info.house_m_value,  x_coordinate, y_coordinate)
+			hd.houses_m[hd.house_m_counter] = House(info.house_m_type, ("M{0:02}".format(hd.house_m_counter)), info.house_m_free, info.house_m_value,  x_coordinate, y_coordinate)
 
-			matrix.place(info.house_m_length, info.house_m_width, x_coordinate, y_coordinate, ("M{0:02}".format(hd.houses_m[hd.house_m_counter].id)))
+			matrix.place(info.house_m_length, info.house_m_width, x_coordinate, y_coordinate, hd.houses_m[hd.house_m_counter].id)
 
-			print("success M{0:02}".format(hd.houses_m[hd.house_m_counter].id))
+			print("success {}".format(hd.houses_m[hd.house_m_counter].id))
 
 			hd.house_m_counter = hd.house_m_counter + 1
