@@ -19,7 +19,7 @@ class Matrix:
     def __init__(self, xsize, ysize):
         self.xsize = xsize
         self.ysize = ysize
-        self.grid = np.full((self.xsize, self.ysize), fill_value='xxxx', dtype=None)
+        self.grid = np.full((self.xsize, self.ysize), fill_value='xxx', dtype=None)
         self.grid.fill('v')
         #return(grid)
 
@@ -37,12 +37,24 @@ class Matrix:
     # dus eerste Eengezinswoning die is namelijk het meeste waard
 
 
-    # checks if enough space around empty coordinate
+    # checks if enough space around empty coordinate for house
     def check(self, x_opp, y_opp, free, x_coordinate, y_coordinate):
         # search for empty spaces
         for x in range((x_coordinate - free), (x_opp + x_coordinate + free)):
             for y in range((y_coordinate - free), (y_opp + y_coordinate + free)):
                 if (self.grid[x, y] != 'v'):
+                    return 1
+
+        # check if house isn't interfering with Bungalow
+        for x in range((x_coordinate - info.house_b_free), (x_opp + x_coordinate + info.house_b_free)):
+            for y in range((y_coordinate - info.house_b_free), (y_opp + y_coordinate + info.house_b_free)):
+                if (x < info.grid_length and y < info.grid_width and x >= 0 and y >= 0 and 'B' in self.grid[x, y]):
+                    return 1
+
+        # check if house isn't interfering with Maison
+        for x in range((x_coordinate - info.house_m_free), (x_opp + x_coordinate + info.house_m_free)):
+            for y in range((y_coordinate - info.house_m_free), (y_opp + y_coordinate + info.house_m_free)):
+                if (x < info.grid_length and y < info.grid_width and x >= 0 and y >= 0 and 'M' in self.grid[x, y]):
                     return 1
         return 0
     # a = np.where(matrix == 'v')
