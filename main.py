@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from class_objects import House, Water, Matrix
-import alg_random as random
+import algorithm.random as random
 import setup as info
 import house_dictionary as hd
 
