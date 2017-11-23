@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from class_objects import House, Water, Matrix
-import algorithm.random as random
+import algorithm.random_fill as algorithm
 import setup as info
 import house_dictionary as hd
 
@@ -12,7 +12,7 @@ def main():
 
 	# print grid
 	print("start:")
-	random.fill(grid, matrix)
+	algorithm.fill(grid, matrix)
 	print(grid)
 
 	total_score = 0
