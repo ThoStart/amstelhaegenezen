@@ -5,6 +5,9 @@ import sys
 from scipy.stats import norm
 import matplotlib.pyplot as plt
 import numpy as np
+import timeit
+
+start = timeit.default_timer()
 
 # declare highest score
 highest_score = 0
@@ -18,25 +21,34 @@ fd = open('score.csv','w')
 data = []
 
 # repeat number_of_runs times
-for i in range(number_of_runs):
+i = 0
+while i < number_of_runs:
 
     # run main file
     matrix, grid, total_score = main.main()
 
-    data.append(total_score)
+    if total_score != 1:
 
-    # add total score to csv file
-    fd.write(str(total_score) + ',')
+        data.append(total_score)
 
-    # save best grid
-    if total_score > highest_score:
-        matrix.export(grid)
+        # add total score to csv file
+        fd.write(str(total_score) + ',')
+
+        # save best grid
+        if total_score > highest_score:
+            matrix.export(grid)
+
+        i+=1
 
     # reset dict files and values
     importlib.reload(hd)
 
 # close csv file
 fd.close()
+
+stop = timeit.default_timer()
+
+print("runtime: {}" .format(stop-start))
 
 # generate normal distribution graph
 mu, std = norm.fit(data)

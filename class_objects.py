@@ -74,13 +74,19 @@ class Matrix:
     def free_space(self, grid, house, name, x_opp, y_opp):
         free = 1
         while(free > 0):
-            for x in range((house.xcor - free), x_opp + free+ house.xcor):
-                for y in range((house.ycor - free), y_opp + free + house.ycor):
+            #for x in set.union(set(range(house.xcor - free, house.xcor - free + 1)), set(range(house.xcor + x_opp + free - 1, house.xcor + x_opp + free))):
+            for x in set.union(set(range(house.xcor - free, house.xcor)), set(range(house.xcor + x_opp, house.xcor + x_opp + free))):
+            #for x in range((house.xcor - free), x_opp + free+ house.xcor):
+                #for y in set.union(set(range(house.ycor - free, house.ycor - free + 1)), set(range(house.ycor + y_opp + free - 1, house.ycor + y_opp + free))):
+                for y in set.union(set(range(house.ycor - free, house.ycor)), set(range(house.ycor + y_opp, house.ycor + y_opp + free))):
+                #for y in range((house.ycor - free), y_opp + free + house.ycor):
                     if (x >= info.grid_length or y >= info.grid_width or x < 0 or y < 0):
                         house.free = free - 1
+                        print(house.free)
                         return free - 1
                     elif (self.grid[x, y] != 'v' and self.grid[x, y] != name):
                         house.free = free - 1
+                        print(house.free)
                         return free - 1
 
             free+=1
