@@ -7,7 +7,8 @@ def create(data, score):
 
     mu, std = norm.fit(data)
 
-    plt.hist(data, bins=25, normed=True, alpha=0.6, color='g')
+    plt.hist(data, bins=25, weights=np.ones_like(data)/len(data), alpha=0.6, color='g')
+    #plt.hist(data, bins=25, normed=True, alpha=0.6, color='g')
 
     xmin, xmax = plt.xlim()
     x = np.linspace(xmin, xmax, 100)
