@@ -31,30 +31,6 @@ def fill(grid, matrix):
 
 			hd.house_e_counter = hd.house_e_counter + 1
 
-		# if check failed, rotate house and check if house can be placed
-		else:
-			for i in range (10000):
-				# random x and y
-				x_coordinate = random.randint(info.house_e_free, info.grid_length - info.house_e_width - info.house_e_free)
-				y_coordinate = random.randint(info.house_e_free, info.grid_width - info.house_e_length - info.house_e_free)
-
-				check = matrix.check(info.house_e_width, info.house_e_length, info.house_e_free, x_coordinate, y_coordinate)
-				if check == 0:
-					break
-
-			# create and place house
-			if check == 0:
-				hd.houses_e[hd.house_e_counter] = House(info.house_e_type, ("E{0:02}".format(hd.house_e_counter)), info.house_e_free, info.house_e_value, x_coordinate, y_coordinate)
-				matrix.place(info.house_e_length, info.house_e_width, x_coordinate, y_coordinate, hd.houses_e[hd.house_e_counter].id)
-
-				print("success {}".format(hd.houses_e[hd.house_e_counter].id))
-
-				hd.house_e_counter = hd.house_e_counter + 1
-
-			# house placement failed
-			else:
-				return 1
-
 	# Bungalows
 
 	for i in range(info.house_b_number):
@@ -92,7 +68,7 @@ def fill(grid, matrix):
 			# create and place house
 			if check == 0:
 				hd.houses_b[hd.house_b_counter] = House(info.house_b_type, ("B{0:02}".format(hd.house_b_counter)), info.house_b_free, info.house_b_value, x_coordinate, y_coordinate)
-				matrix.place(info.house_b_length, info.house_b_width, x_coordinate, y_coordinate, hd.houses_b[hd.house_b_counter].id)
+				matrix.place(info.house_b_width, info.house_b_length, x_coordinate, y_coordinate, hd.houses_b[hd.house_b_counter].id)
 
 				print("success {}".format(hd.houses_b[hd.house_b_counter].id))
 

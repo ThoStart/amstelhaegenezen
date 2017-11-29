@@ -2,11 +2,11 @@ import main
 import house_dictionary as hd
 import importlib
 import sys
-from scipy.stats import norm
-import matplotlib.pyplot as plt
+import tk_export
 import numpy as np
 import timeit
 
+# start runtime
 start = timeit.default_timer()
 
 # declare highest score
@@ -37,6 +37,7 @@ while i < number_of_runs:
         # save best grid
         if total_score > highest_score:
             matrix.export(grid)
+            highest_score = total_score
 
         i+=1
 
@@ -46,20 +47,13 @@ while i < number_of_runs:
 # close csv file
 fd.close()
 
+# stop and show runtime
 stop = timeit.default_timer()
-
 print("runtime: {}" .format(stop-start))
 
-# generate normal distribution graph
-mu, std = norm.fit(data)
+# use tkinter to visualize grid
+tk_export.create(matrix,grid, total_score)
 
-plt.hist(data, bins=25, normed=True, alpha=0.6, color='g')
-
-xmin, xmax = plt.xlim()
-x = np.linspace(xmin, xmax, 100)
-p = norm.pdf(x, mu, std)
-plt.plot(x, p, 'k', linewidth=2)
-title = "Fit results: mu = %.2f,  std = %.2f" % (mu, std)
-plt.title(title)
-
-plt.show()
+# use matplotlib to visualize normal distribution graph
+import plot_export
+plot_export.create(data, total_score)
