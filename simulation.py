@@ -28,7 +28,7 @@ i = 0
 while i < number_of_runs:
 
     # run main file
-    matrix, grid, total_score = main.main()
+    matrix, grid, total_score, hc_data = main.main()
 
     if total_score != 1:
 
@@ -62,11 +62,13 @@ stop = timeit.default_timer()
 print("runtime: {}" .format(stop-start))
 
 # use tkinter to visualize grid
-tk_export.create(lowest_matrix, lowest_grid, lowest_score)
+tk_export.create(lowest_matrix, lowest_grid, (str(lowest_score) + " (lowest score)"))
 
 # use tkinter to visualize grid
-tk_export.create(highest_matrix, highest_grid, highest_score)
+tk_export.create(highest_matrix, highest_grid, (str(highest_score) + " (highest score)"))
 
 # use matplotlib to visualize normal distribution graph
 import plot_export
-plot_export.create(data, total_score)
+#plot_export.normal(data, total_score)
+
+plot_export.line(hc_data)

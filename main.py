@@ -17,13 +17,13 @@ def main():
 	algorithm.fill(grid, matrix)
 	print(grid)
 
-	hill_climbing.execute(matrix, grid)
+	hc_data = hill_climbing.execute(matrix, grid)
 
 	# generate total score
 	total_score = score.calculate(grid, matrix)
 	#print("Total score: {}" .format(total_score))
 
-	return matrix, grid, total_score
+	return matrix, grid, total_score, hc_data
 
 	# # export grid to csv file
 	# matrix.export(grid)

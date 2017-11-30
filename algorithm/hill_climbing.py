@@ -8,7 +8,9 @@ def execute(matrix, grid):
 
 	# before hill climbing algorithm
 	total_score = score.calculate(grid, matrix)
-	tk_export.create(matrix, grid, total_score)
+	tk_export.create(matrix, grid, (str(total_score) + " (before hill climbing)"))
+
+	hc_data = []
 
 	# swap E and B
 	for i in hd.houses_e:
@@ -17,8 +19,12 @@ def execute(matrix, grid):
 			total_score_new = score.calculate(grid, matrix)
 
 			if total_score_new < total_score:
+				hc_data.append(total_score)
 				swap(matrix, grid, hd.houses_e[i], hd.houses_b[j])
 				total_score = score.calculate(grid, matrix)
+			else:
+				total_score = total_score_new
+				hc_data.append(total_score)
 
 	# swap B and M
 	for i in hd.houses_b:
@@ -27,8 +33,12 @@ def execute(matrix, grid):
 			total_score_new = score.calculate(grid, matrix)
 
 			if total_score_new < total_score:
+				hc_data.append(total_score)
 				swap(matrix, grid, hd.houses_b[i], hd.houses_m[j])
 				total_score = score.calculate(grid, matrix)
+			else:
+				total_score = total_score_new
+				hc_data.append(total_score)
 
 	# swap E and M
 	for i in hd.houses_e:
@@ -37,14 +47,18 @@ def execute(matrix, grid):
 			total_score_new = score.calculate(grid, matrix)
 
 			if total_score_new < total_score:
+				hc_data.append(total_score)
 				swap(matrix, grid, hd.houses_e[i], hd.houses_m[j])
 				total_score = score.calculate(grid, matrix)
+			else:
+				total_score = total_score_new
+				hc_data.append(total_score)
 
 	# after hill climbing algorithm
-	total_score = score.calculate(grid, matrix)
-	tk_export.create(matrix, grid, total_score)
+	print(hc_data)
+	tk_export.create(matrix, grid, (str(total_score) + " (after hill climbing)"))
 
-	return 0
+	return hc_data
 
 
 def swap(matrix, grid, house_a, house_b):

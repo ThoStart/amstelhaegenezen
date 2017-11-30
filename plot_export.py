@@ -3,7 +3,7 @@ from scipy.stats import norm
 import numpy as np
 
 # use matplotlib to visualize normal distribution graph
-def create(data, score):
+def normal(data, score):
 
     mu, std = norm.fit(data)
 
@@ -15,6 +15,25 @@ def create(data, score):
     p = norm.pdf(x, mu, std)
     plt.plot(x, p, 'k', linewidth=2)
     title = "Fit results: mu = %.2f,  std = %.2f, max score = %i" % (mu, std, score)
+    plt.title(title)
+
+    plt.show()
+
+    return(0)
+
+# use matplotlib to visualize line graph
+def line(data):
+
+    xaxis_array = []
+
+    for i in range(len(data)):
+        xaxis_array.append(i)
+
+    plt.plot(xaxis_array, data, 'r--')
+    plt.axis([0, len(data), min(data) - 500000, max(data) + 500000])
+
+    title = "Hill climbing"
+
     plt.title(title)
 
     plt.show()
