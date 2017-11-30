@@ -2,13 +2,15 @@ import numpy as np
 import setup as info
 
 class House:
-    def __init__(self, type, id, free, value, xcor, ycor):
+    def __init__(self, type, id, free, value, xcor, ycor, length, width):
         self.type = type
         self.id = id
         self.free = free
         self.value = value
         self.xcor = xcor
         self.ycor = ycor
+        self.length = length
+        self.width = width
 
 class Water:
     def __init__(self, length, width):
@@ -42,7 +44,7 @@ class Matrix:
         # search for empty spaces
         for x in range((x_coordinate - free), (x_opp + x_coordinate + free)):
             for y in range((y_coordinate - free), (y_opp + y_coordinate + free)):
-                if (self.grid[x, y] != 'v'):
+                if (x < info.grid_length and y < info.grid_width and x >= 0 and y >= 0 and self.grid[x, y] != 'v'):
                     return 1
 
         # check if house isn't interfering with Bungalow
@@ -73,6 +75,7 @@ class Matrix:
 
     def free_space(self, grid, house, name, x_opp, y_opp):
         free = 1
+
         while(free > 0):
             #for x in set.union(set(range(house.xcor - free, house.xcor - free + 1)), set(range(house.xcor + x_opp + free - 1, house.xcor + x_opp + free))):
             for x in set.union(set(range(house.xcor - free, house.xcor)), set(range(house.xcor + x_opp, house.xcor + x_opp + free))):

@@ -2,6 +2,7 @@
 
 from class_objects import House, Water, Matrix
 import algorithm.random_fill as algorithm
+import algorithm.hill_climbing as hill_climbing
 import score
 import setup as info
 import house_dictionary as hd
@@ -15,6 +16,8 @@ def main():
 	# fill grid with algorithm and print grid
 	algorithm.fill(grid, matrix)
 	print(grid)
+
+	hill_climbing.execute(matrix, grid)
 
 	# generate total score
 	total_score = score.calculate(grid, matrix)

@@ -12,6 +12,9 @@ start = timeit.default_timer()
 # declare highest score
 highest_score = 0
 
+# declare lowest score
+lowest_score = 100000000
+
 # get number of runs from command line argument
 number_of_runs = int(sys.argv[1])
 
@@ -36,8 +39,15 @@ while i < number_of_runs:
 
         # save best grid
         if total_score > highest_score:
-            matrix.export(grid)
+            highest_matrix = matrix
+            highest_grid = grid
             highest_score = total_score
+            matrix.export(highest_grid)
+
+        if total_score < lowest_score:
+            lowest_matrix = matrix
+            lowest_grid = grid
+            lowest_score = total_score
 
         i+=1
 
@@ -52,7 +62,10 @@ stop = timeit.default_timer()
 print("runtime: {}" .format(stop-start))
 
 # use tkinter to visualize grid
-tk_export.create(matrix,grid, total_score)
+tk_export.create(lowest_matrix, lowest_grid, lowest_score)
+
+# use tkinter to visualize grid
+tk_export.create(highest_matrix, highest_grid, highest_score)
 
 # use matplotlib to visualize normal distribution graph
 import plot_export
