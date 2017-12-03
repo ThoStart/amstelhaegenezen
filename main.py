@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from class_objects import House, Water, Matrix
-import algorithm.random_fill as algorithm
+import algorithm.greedy as algorithm
 import algorithm.hill_climbing as hill_climbing
 import score
 import setup as info
