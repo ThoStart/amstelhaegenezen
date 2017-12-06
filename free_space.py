@@ -112,57 +112,57 @@ def calculate_free_space_eengezinswoning():
             if(c < lowest_c):
                 lowest_c = c
 
-            # find smallest distance between house and other houses in diagonal
-            for i in hd.houses_b:
-                a = hd.houses_e[house].xcor - (hd.houses_b[i].xcor + hd.houses_b[i].length)
-                b = hd.houses_e[house].ycor - (hd.houses_b[i].ycor + hd.houses_b[i].width)
-                c = (a**2 + b**2)**0.5
-                if(c < lowest_c):
-                    lowest_c = c
+        # find smallest distance between house and other houses in diagonal
+        for i in hd.houses_b:
+            a = hd.houses_e[house].xcor - (hd.houses_b[i].xcor + hd.houses_b[i].length)
+            b = hd.houses_e[house].ycor - (hd.houses_b[i].ycor + hd.houses_b[i].width)
+            c = (a**2 + b**2)**0.5
+            if(c < lowest_c):
+                lowest_c = c
 
-                a = hd.houses_e[house].xcor - (hd.houses_b[i].xcor + hd.houses_b[i].length)
-                b = (hd.houses_e[house].ycor + hd.houses_e[house].width) - hd.houses_b[i].ycor
-                c = (a**2 + b**2)**0.5
-                if(c < lowest_c):
-                    lowest_c = c
+            a = hd.houses_e[house].xcor - (hd.houses_b[i].xcor + hd.houses_b[i].length)
+            b = (hd.houses_e[house].ycor + hd.houses_e[house].width) - hd.houses_b[i].ycor
+            c = (a**2 + b**2)**0.5
+            if(c < lowest_c):
+                lowest_c = c
 
-                a = (hd.houses_e[house].xcor + hd.houses_e[house].length) - hd.houses_b[i].xcor
-                b = hd.houses_e[house].ycor - (hd.houses_b[i].ycor + hd.houses_b[i].width)
-                c = (a**2 + b**2)**0.5
-                if(c < lowest_c):
-                    lowest_c = c
+            a = (hd.houses_e[house].xcor + hd.houses_e[house].length) - hd.houses_b[i].xcor
+            b = hd.houses_e[house].ycor - (hd.houses_b[i].ycor + hd.houses_b[i].width)
+            c = (a**2 + b**2)**0.5
+            if(c < lowest_c):
+                lowest_c = c
 
-                a = (hd.houses_e[house].xcor + hd.houses_e[house].length) - hd.houses_b[i].xcor
-                b = (hd.houses_e[house].ycor + hd.houses_e[house].width) - hd.houses_b[i].ycor
-                c = (a**2 + b**2)**0.5
-                if(c < lowest_c):
-                    lowest_c = c
+            a = (hd.houses_e[house].xcor + hd.houses_e[house].length) - hd.houses_b[i].xcor
+            b = (hd.houses_e[house].ycor + hd.houses_e[house].width) - hd.houses_b[i].ycor
+            c = (a**2 + b**2)**0.5
+            if(c < lowest_c):
+                lowest_c = c
 
-            # find smallest distance between house and other houses in diagonal
-            for i in hd.houses_m:
-                a = hd.houses_e[house].xcor - (hd.houses_m[i].xcor + hd.houses_m[i].length)
-                b = hd.houses_e[house].ycor - (hd.houses_m[i].ycor + hd.houses_m[i].width)
-                c = (a**2 + b**2)**0.5
-                if(c < lowest_c):
-                    lowest_c = c
+        # find smallest distance between house and other houses in diagonal
+        for i in hd.houses_m:
+            a = hd.houses_e[house].xcor - (hd.houses_m[i].xcor + hd.houses_m[i].length)
+            b = hd.houses_e[house].ycor - (hd.houses_m[i].ycor + hd.houses_m[i].width)
+            c = (a**2 + b**2)**0.5
+            if(c < lowest_c):
+                lowest_c = c
 
-                a = hd.houses_e[house].xcor - (hd.houses_m[i].xcor + hd.houses_m[i].length)
-                b = (hd.houses_e[house].ycor + hd.houses_e[house].width) - hd.houses_m[i].ycor
-                c = (a**2 + b**2)**0.5
-                if(c < lowest_c):
-                    lowest_c = c
+            a = hd.houses_e[house].xcor - (hd.houses_m[i].xcor + hd.houses_m[i].length)
+            b = (hd.houses_e[house].ycor + hd.houses_e[house].width) - hd.houses_m[i].ycor
+            c = (a**2 + b**2)**0.5
+            if(c < lowest_c):
+                lowest_c = c
 
-                a = (hd.houses_e[house].xcor + hd.houses_e[house].length) - hd.houses_m[i].xcor
-                b = hd.houses_e[house].ycor - (hd.houses_m[i].ycor + hd.houses_m[i].width)
-                c = (a**2 + b**2)**0.5
-                if(c < lowest_c):
-                    lowest_c = c
+            a = (hd.houses_e[house].xcor + hd.houses_e[house].length) - hd.houses_m[i].xcor
+            b = hd.houses_e[house].ycor - (hd.houses_m[i].ycor + hd.houses_m[i].width)
+            c = (a**2 + b**2)**0.5
+            if(c < lowest_c):
+                lowest_c = c
 
-                a = (hd.houses_e[house].xcor + hd.houses_e[house].length) - hd.houses_m[i].xcor
-                b = (hd.houses_e[house].ycor + hd.houses_e[house].width) - hd.houses_m[i].ycor
-                c = (a**2 + b**2)**0.5
-                if(c < lowest_c):
-                    lowest_c = c
+            a = (hd.houses_e[house].xcor + hd.houses_e[house].length) - hd.houses_m[i].xcor
+            b = (hd.houses_e[house].ycor + hd.houses_e[house].width) - hd.houses_m[i].ycor
+            c = (a**2 + b**2)**0.5
+            if(c < lowest_c):
+                lowest_c = c
 
         hd.houses_e[house].free = lowest_c
         print(lowest_c)
