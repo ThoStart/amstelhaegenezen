@@ -23,7 +23,7 @@ There are three different kinds of houses:
   </tr>
   <tr>
     <td>Eengezinswoning</td>
-    <td>$285000</td>
+    <td>$285.000</td>
     <td>8 x 8 meter </td>
     <td>2 meter</td>
     <td>0,03 </td>
@@ -31,7 +31,7 @@ There are three different kinds of houses:
   </tr>
     <tr>
     <td>Bungalow</td>
-    <td>$399000</td>
+    <td>$399.000</td>
     <td>10 x 7.5 meter </td>
     <td>3 meter</td>
     <td>0,04 </td>
@@ -39,7 +39,7 @@ There are three different kinds of houses:
   </tr>
   <tr>
     <td>Maison</td>
-    <td>$610000</td>
+    <td>$610.000</td>
     <td>11 x 10.5 meter </td>
     <td>6 meter</td>
     <td>0,06 </td>
