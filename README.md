@@ -56,7 +56,7 @@ A prompt will be opened which algorithm(s) you want to use to fill the numpy gri
 
 Possible algorithms to use:
 - random fill algorithm
-- random fill algorithm in combination with hill climber algortihm
+- random fill algorithm in combination with hill climber algorithm
 - greedy algorithm
 - greedy algorithm in combination with hill climber algorithm
 
