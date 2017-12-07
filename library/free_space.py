@@ -1,5 +1,5 @@
-import house_dictionary as hd
-import setup as info
+import library.house_dictionary as hd
+import library.setup as info
 
 def calculate_all():
     calculate_houses('houses_e')

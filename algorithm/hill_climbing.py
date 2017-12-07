@@ -1,8 +1,8 @@
 from class_objects import House, Water, Matrix
-import setup as info
-import house_dictionary as hd
-import tk_export
-import score
+import library.setup as info
+import library.house_dictionary as hd
+import library.tk_export as tk_export
+import library.score as score
 
 def execute(matrix, grid):
 

@@ -4,12 +4,12 @@ from class_objects import House, Water, Matrix
 import algorithm.random
 import algorithm.greedy
 import algorithm.hill_climbing
-import score
-import setup as info
-import house_dictionary as hd
-
+import library.score as score
+import library.setup as info
+import library.house_dictionary as hd
+import library.tk_export as tk_export
+import library.free_space as free_space
 import timeit
-import tk_export
 import sys
 import importlib
 
@@ -110,7 +110,7 @@ def main():
 
 	# use matplotlib to visualize normal distribution graph
 	# imported here due to matplotlib interfering with tkinter
-	import plot_export
+	import library.plot_export as plot_export
 
 	if (chosen_algorithm == 2 or chosen_algorithm == 4) and plot_data == 'Y':
 		plot_export.line(hc_data)

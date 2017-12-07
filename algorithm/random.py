@@ -1,7 +1,7 @@
 from class_objects import House, Water, Matrix
 import random
-import setup as info
-import house_dictionary as hd
+import library.setup as info
+import library.house_dictionary as hd
 
 def fill(grid, matrix):
 

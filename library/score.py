@@ -1,7 +1,7 @@
 from class_objects import House, Water, Matrix
-import setup as info
-import house_dictionary as hd
-import free_space
+import library.setup as info
+import library.house_dictionary as hd
+import library.free_space as free_space
 
 def calculate(grid, matrix):
 	total_score = 0

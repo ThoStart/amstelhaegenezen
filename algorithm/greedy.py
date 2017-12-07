@@ -1,6 +1,6 @@
 from class_objects import House, Water, Matrix
-import setup as info
-import house_dictionary as hd
+import library.setup as info
+import library.house_dictionary as hd
 
 def fill(grid, matrix):
     # start in top left corner,

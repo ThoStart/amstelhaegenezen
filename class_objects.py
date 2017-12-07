@@ -1,5 +1,5 @@
 import numpy as np
-import setup as info
+import library.setup as info
 
 class House:
     def __init__(self, type, id, free, value, xcor, ycor, length, width):
