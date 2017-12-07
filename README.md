@@ -1,30 +1,88 @@
+Amstelhaege Case
+=============
 
-At the top of the file there should be a short introduction and/ or overview that explains what the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+Summary
+------------
+The amstelhaege case is a heuristic problem in which land sized 160 x 180 meter has to be filled with either 20, 40 or 60 houses. Each house has (depending on which house type it is) a certain amount of free space around it. The houses are to be placed in such a way that the land's value is the highest possible. Next to the houses 20% of the surface has to be water. 
+If the amount of free space is higher than the standard free space, the value of a house will increase.
 
-Code Example
+There are three different kinds of houses:
+- Eengezinswoningen
+- Bungalows
+- Maisons
 
-Show what the library does as concisely as possible, developers should be able to figure out how your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Standard Price</th>
+    <th>Size</th>
+    <th>Standard free space</th>
+    <th>Factor increment</th>
+    <th>Percentage of all houses</th>
 
-Motivation
+  </tr>
+  <tr>
+    <td>Eengezinswoning</td>
+    <td>$285000</td>
+    <td>8 x 8 meter </td>
+    <td>2 meter</td>
+    <td>0,03 </td>
+    <td>60% </td>
+  </tr>
+    <tr>
+    <td>Bungalow</td>
+    <td>$399000</td>
+    <td>10 x 7.5 meter </td>
+    <td>3 meter</td>
+    <td>0,04 </td>
+    <td>25% </td>
+  </tr>
+  <tr>
+    <td>Maison</td>
+    <td>$610000</td>
+    <td>11 x 10.5 meter </td>
+    <td>6 meter</td>
+    <td>0,06 </td>
+    <td>15% </td>
+  </tr>
+</table>
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain why the project exists.
+Usage
+------------
+run main.py with python3
+<pre><code> python3 main.py </code></pre>
+
+A prompt will be opened which algorithm(s) you want to use to fill the numpy grid with houses.
+
+Possible algorithms to use:
+- random fill algorithm
+- random fill algorithm in combination with hill climber algortihm
+- greedy algorithm
+- greedy algorithm in combination with hill climber algorithm
+
+The prompt will also ask if you want to visualize the solution, visualations are done with tkinter.
+
 
 Installation
+------------
+To use this program several applications need to be installed including Numpy, Tkinter and Matplotlib.
 
-Provide code examples and explanations of how to get the project.
+To install Numpy:
+Please see: http://scipy.org/install.html for installing numpy on your system.
 
-API Reference
+To install Tkinter use these commands in terminal:
+<pre><code>sudo apt-get install python3-tk</code></pre>
+To install Matplotlib use these commands in terminal: (matplotlib needs numpy to work)
+<pre><code> 
+brew install libpng freetype pkg-config
+python -mpip install .
+</code></pre>
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
-
-Tests
-
-Describe and show how to run the tests with code examples.
 
 Contributors
+------------
+Timo den Hartog - Programmer
+Alex Witkamp - Programmer
+Thomas Start - Programmer
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
-
-License
-
-A short snippet describing the license (MIT, Apache, etc.)
+Quinten van der Post - Teaching Assistent/Legendary Programmer
