@@ -81,8 +81,8 @@ python -mpip install .
 
 Contributors
 ------------
-Timo den Hartog - Programmer
-Alex Witkamp - Programmer
-Thomas Start - Programmer
+Timo den Hartog - Programmer <br>
+Alex Witkamp - Programmer <br>
+Thomas Start - Programmer <br>
 
-Quinten van der Post - Teaching Assistent/Legendary Programmer
+Quinten van der Post - Legend / Teaching Assistent
