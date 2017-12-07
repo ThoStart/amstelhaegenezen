@@ -8,7 +8,7 @@ def execute(matrix, grid):
 
 	# before hill climbing algorithm
 	total_score = score.calculate(grid, matrix)
-	tk_export.create(matrix, grid, (str(total_score) + " (before hill climbing)"))
+	#tk_export.create(matrix, grid, (str(total_score) + " (before hill climbing)"))
 
 	hc_data = []
 
@@ -56,7 +56,7 @@ def execute(matrix, grid):
 
 	# after hill climbing algorithm
 	print(hc_data)
-	tk_export.create(matrix, grid, (str(total_score) + " (after hill climbing)"))
+	#tk_export.create(matrix, grid, (str(total_score) + " (after hill climbing)"))
 
 	return hc_data
 

@@ -177,4 +177,4 @@ def calculate_houses(type):
                 lowest_c = c
 
         houses_t[house].free = lowest_c
-        print(lowest_c)
+        #print(lowest_c)
