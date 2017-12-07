@@ -1,4 +1,5 @@
-##Classes Readme
+Classes Readme
+=======
 
 Content
 --------
@@ -13,6 +14,6 @@ No extra installations are needed next to those already marked in the main readm
 
 Contributors
 ---------
-Timo den Hartog
-Alex Witkamp
-Thomas Start
+Timo den Hartog <br>
+Alex Witkamp <br>
+Thomas Start <br>
