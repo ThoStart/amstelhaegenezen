@@ -1,4 +1,4 @@
-from class_objects import House, Water, Matrix
+from classes.class_objects import House, Water, Matrix
 import library.setup as info
 import library.house_dictionary as hd
 import library.free_space as free_space

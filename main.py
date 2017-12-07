@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from class_objects import House, Water, Matrix
+from classes.class_objects import House, Water, Matrix
 import algorithm.random
 import algorithm.greedy
 import algorithm.hill_climbing
