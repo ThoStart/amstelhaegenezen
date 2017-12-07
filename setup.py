@@ -37,5 +37,5 @@ house_m_number = int(3 * number_of_houses / 20)
 
 # define type, length, and width for Water
 water_type = "Water"
-water_length = 160 * scale
-water_width = 36 * scale
+water_length = 38 * scale
+water_width = 38 * scale

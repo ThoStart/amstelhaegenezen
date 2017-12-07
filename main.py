@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from class_objects import House, Water, Matrix
-import algorithm.random_fill
+import algorithm.random
 import algorithm.greedy
 import algorithm.hill_climbing
 import score
@@ -47,7 +47,7 @@ def main():
 
 		# fill grid with random algorithm
 		if chosen_algorithm == 1 or chosen_algorithm == 2:
-			algorithm.random_fill.fill(grid, matrix)
+			algorithm.random.fill(grid, matrix)
 
 		# fill grid with greedy algorithm
 		if chosen_algorithm == 3 or chosen_algorithm == 4:
