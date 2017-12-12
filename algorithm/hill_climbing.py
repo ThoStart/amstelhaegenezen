@@ -4,58 +4,34 @@ import library.house_dictionary as hd
 import library.tk_export as tk_export
 import library.score as score
 
-def execute(matrix, grid):
+def start(matrix, grid):
+    
+    hc_data = []
+    
+    execute_swap(grid, matrix, hc_data, hd.houses_e, hd.houses_b)
+    execute_swap(grid, matrix, hc_data, hd.houses_b, hd.houses_m)
+    execute_swap(grid, matrix, hc_data, hd.houses_m, hd.houses_e)
+    execute_swap(grid, matrix, hc_data, hd.houses_e, hd.houses_b)
+    
+    print(hc_data)
+    
+    number_of_iterations =     1000 - len(hc_data)
+    
+    return hc_data
 
-	# before hill climbing algorithm
-	total_score = score.calculate(grid, matrix)
-	#tk_export.create(matrix, grid, (str(total_score) + " (before hill climbing)"))
+def execute_swap(grid, matrix, hc_data, houses_a, houses_b):
+    total_score = score.calculate(grid, matrix)
+    
+    for i in houses_a:
+        for j in houses_b:
+            Matrix.swap(matrix, grid, houses_a[i], houses_b[j])
+            total_score_new = score.calculate(grid, matrix)
+            
+            if total_score_new < total_score:
+                hc_data.append(total_score)
+                Matrix.swap(matrix, grid, houses_a[i], houses_b[j])
+                total_score = score.calculate(grid, matrix)
+                else:
+                    total_score = total_score_new
+                    hc_data.append(total_score)
 
-	hc_data = []
-
-	# swap E and B
-	for i in hd.houses_e:
-		for j in hd.houses_b:
-			Matrix.swap(matrix, grid, hd.houses_e[i], hd.houses_b[j])
-			total_score_new = score.calculate(grid, matrix)
-
-			if total_score_new < total_score:
-				hc_data.append(total_score)
-				Matrix.swap(matrix, grid, hd.houses_e[i], hd.houses_b[j])
-				total_score = score.calculate(grid, matrix)
-			else:
-				total_score = total_score_new
-				hc_data.append(total_score)
-
-	# swap B and M
-	for i in hd.houses_b:
-		for j in hd.houses_m:
-			Matrix.swap(matrix, grid, hd.houses_b[i], hd.houses_m[j])
-			total_score_new = score.calculate(grid, matrix)
-
-			if total_score_new < total_score:
-				hc_data.append(total_score)
-				Matrix.swap(matrix, grid, hd.houses_b[i], hd.houses_m[j])
-				total_score = score.calculate(grid, matrix)
-			else:
-				total_score = total_score_new
-				hc_data.append(total_score)
-
-	# swap E and M
-	for i in hd.houses_e:
-		for j in hd.houses_m:
-			Matrix.swap(matrix, grid, hd.houses_e[i], hd.houses_m[j])
-			total_score_new = score.calculate(grid, matrix)
-
-			if total_score_new < total_score:
-				hc_data.append(total_score)
-				Matrix.swap(matrix, grid, hd.houses_e[i], hd.houses_m[j])
-				total_score = score.calculate(grid, matrix)
-			else:
-				total_score = total_score_new
-				hc_data.append(total_score)
-
-	# after hill climbing algorithm
-	print(hc_data)
-	#tk_export.create(matrix, grid, (str(total_score) + " (after hill climbing)"))
-
-	return hc_data
