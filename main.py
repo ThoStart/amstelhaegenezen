@@ -17,9 +17,9 @@ def main():
 	chosen_algorithm, number_of_runs, visualize_data, plot_data = start()
 
 	# Greedy does not work properly (yet)
-	if chosen_algorithm == 3 or chosen_algorithm == 4:
-		print("Sorry, this algorithm takes ages. Aborting.")
-		return 1
+	# if chosen_algorithm == 3 or chosen_algorithm == 4:
+	# 	print("Sorry, this algorithm takes ages. Aborting.")
+	# 	return 1
 
 	# start runtime
 	starttime = timeit.default_timer()
@@ -61,7 +61,7 @@ def main():
 				total_score = score.calculate(grid, matrix)
 				tk_export.create(matrix, grid, (str(total_score) + " (before hill climbing)"))
 
-			hc_data = algorithm.hill_climbing.execute(matrix, grid)
+			hc_data = algorithm.hill_climbing.start(matrix, grid)
 
 			if visualize_data == 'Y':
 				total_score = score.calculate(grid, matrix)

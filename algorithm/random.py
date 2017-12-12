@@ -7,19 +7,18 @@ def fill(grid, matrix):
 
 	# Water
 	if random.randint(0,1) == 0:
-		# water in corners
+		# water in four corners
 		matrix.place(info.water_length, info.water_width, 0, 0, "~")
 		matrix.place(info.water_length, info.water_width, info.grid_length-info.water_length, 0, "~")
 		matrix.place(info.water_length, info.water_width, 0, info.grid_width-info.water_width, "~")
 		matrix.place(info.water_length, info.water_width, info.grid_length-info.water_length, info.grid_width-info.water_width, "~")
 
 	else:
-		# water at edges
-		matrix.place(int(info.water_length / 4), info.water_width * 4, 0, 0, "~")
-		matrix.place(info.water_length * 3, int(info.water_width / 3), int(info.water_length / 4), 0, "~")
-		matrix.place(int(info.water_length / 4), info.water_width * 4, info.grid_length-int(info.water_length/4), info.grid_width-info.water_width*4, "~")
-		matrix.place(info.water_length * 3, int(info.water_width / 3), info.grid_length - int(info.water_length * 3) - int(info.water_length / 4), info.grid_width-int(info.water_length / 3), "~")
-
+		# water in two corners
+	    matrix.place(int(info.water_length / 2), info.water_width * 2, 0, 0, "~")
+	    matrix.place(int(info.water_length * 1.5), int(info.water_width / 1.5), int(info.water_length / 2), 0, "~")
+	    matrix.place(int(info.water_length / 2), info.water_width * 2, info.grid_length-int(info.water_length / 2), info.grid_width-info.water_width * 2, "~")
+	    matrix.place(int(info.water_length * 1.5), int(info.water_width / 1.5), info.grid_length - int(info.water_length * 1.5) - int(info.water_length / 2), info.grid_width-int(info.water_length / 1.5), "~")
 
 	# Eengezinswoningen
 
