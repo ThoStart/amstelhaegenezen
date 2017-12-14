@@ -3,7 +3,7 @@
 Content
 --------
 
-This map contains the visualization files that exported when this feature is turned on.
+This map contains the visualization files that are getting exported when this feature is turned on.
 
 
 Contributors
