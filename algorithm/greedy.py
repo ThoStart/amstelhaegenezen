@@ -43,18 +43,6 @@ def fill_old(grid, matrix):
 
 def fill(grid, matrix):
 
-	# water in four corners
-    matrix.place(info.water_length, info.water_width, 0, 0, "~")
-    matrix.place(info.water_length, info.water_width, info.grid_length-info.water_length, 0, "~")
-    matrix.place(info.water_length, info.water_width, 0, info.grid_width-info.water_width, "~")
-    matrix.place(info.water_length, info.water_width, info.grid_length-info.water_length, info.grid_width-info.water_width, "~")
-
-    # # water in two corners
-    # matrix.place(int(info.water_length / 2), info.water_width * 2, 0, 0, "~")
-    # matrix.place(int(info.water_length * 1.5), int(info.water_width / 1.5), int(info.water_length / 2), 0, "~")
-    # matrix.place(int(info.water_length / 2), info.water_width * 2, info.grid_length-int(info.water_length / 2), info.grid_width-info.water_width * 2, "~")
-    # matrix.place(int(info.water_length * 1.5), int(info.water_width / 1.5), info.grid_length - int(info.water_length * 1.5) - int(info.water_length / 2), info.grid_width-int(info.water_length / 1.5), "~")
-    
     start_x = int(info.grid_length * 0.5)
     start_y = int(info.grid_width * 0.5)
 

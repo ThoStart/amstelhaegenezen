@@ -3,7 +3,7 @@ Amstelhaege Case
 
 Summary
 ------------
-The amstelhaege case is a heuristic problem in which land sized 160 x 180 meter has to be filled with either 20, 40 or 60 houses. Each house has (depending on which house type it is) a certain amount of free space around it. The houses are to be placed in such a way that the land's value is the highest possible. Next to the houses 20% of the surface has to be water. 
+The amstelhaege case is a heuristic problem in which land sized 160 x 180 meter has to be filled with either 20, 40 or 60 houses. Each house has (depending on which house type it is) a certain amount of free space around it. The houses are to be placed in such a way that the land's value is the highest possible. Next to the houses 20% of the surface has to be water.
 If the amount of free space is higher than the standard free space, the value of a house will increase.
 
 There are three different kinds of houses:
@@ -70,13 +70,18 @@ To use this program several applications need to be installed including Numpy, T
 To install Numpy:
 Please see: http://scipy.org/install.html for installing numpy on your system.
 
-To install Tkinter use these commands in terminal:
+To install Tkinter, use these commands in terminal:
 <pre><code>sudo apt-get install python3-tk</code></pre>
 To install Matplotlib use these commands in terminal: (matplotlib needs numpy to work)
-<pre><code> 
+<pre><code>
 brew install libpng freetype pkg-config
-python -mpip install .
+python -mpip install
 </code></pre>
+To install pillow, use these commands in terminal (or see http://pillow.readthedocs.io/en/3.4.x/installation.html):
+<pre><code>
+pip install Pillow
+</code></pre>
+
 
 
 Contributors

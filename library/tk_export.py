@@ -1,4 +1,5 @@
 import tkinter as tk
+from PIL import Image, ImageGrab
 
 def create(mtrx, grd, score):
 
@@ -44,6 +45,15 @@ def create(mtrx, grd, score):
 
     width, height = test1.width, test1.height
 
+    # print(colorMatrix)
+
+    # some color constants for PIL
+    white = (255, 255, 255)
+    black = (0, 0, 0)
+    blue = (0, 0, 255)
+    red = (255, 0, 0)
+    green = (0,128,0)
+
     root = tk.Tk()
     root.title("Score: {}" .format(score))
 
@@ -53,6 +63,13 @@ def create(mtrx, grd, score):
     canvas = tk.Canvas(frame, width=width, height=height)
     rows, cols = len(colorMatrix[0]), len(colorMatrix)
 
+
+    # PIL create an empty image and draw object to draw on
+    # memory only, not visible
+    # image1 = Image.new("RGB", (width, height), white)
+    # draw = ImageDraw.Draw(image1)
+
+    #
     rect_width, rect_height = width // rows, height // cols
     for y, row in enumerate(colorMatrix):
         for x, color in enumerate(row):
@@ -61,6 +78,26 @@ def create(mtrx, grd, score):
             canvas.create_rectangle(x0, y0, x1, y1, fill=color, width=0)
     canvas.pack(fill=tk.BOTH, expand=1)
 
-    root.mainloop()
+    canvas.update()
+
+    # canvas.postscript(file="file_name.ps", colormode='color')
+    #
+    # img = Image.open("file_name.ps")
+    # img.save("file_name.png", "png")
+
+    getter(root,canvas,score)
+
+    #root.mainloop()
+
+    #root.exit() # tijdelijk weg
+    root.destroy() # voor goed weg
 
     return(0)
+
+
+def getter(root,widget,score):
+    x=root.winfo_rootx()*2+widget.winfo_x()
+    y=root.winfo_rooty()*2+widget.winfo_y()
+    x1=x+widget.winfo_width() * 2
+    y1=y+widget.winfo_height() * 2
+    ImageGrab.grab().crop((x,y,x1,y1)).save("export/" + score + ".png")

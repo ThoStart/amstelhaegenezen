@@ -9,12 +9,14 @@ import library.setup as info
 import library.house_dictionary as hd
 import library.tk_export as tk_export
 import library.free_space as free_space
+import library.water as water
+import numpy as np
 import timeit
 import sys
 import importlib
 
 def main():
-	chosen_algorithm, number_of_runs, visualize_data, plot_data = start()
+	chosen_algorithm, water_layout, number_of_runs, visualize_data, plot_data = start()
 
 	# Greedy does not work properly (yet)
 	# if chosen_algorithm == 3 or chosen_algorithm == 4:
@@ -45,6 +47,9 @@ def main():
 		matrix = Matrix(info.grid_length,info.grid_width)
 		grid = matrix.grid
 
+		# fill grid with water
+		water.fill(matrix, grid, water_layout)
+
 		# fill grid with random algorithm
 		if chosen_algorithm == 1 or chosen_algorithm == 2:
 			algorithm.random.fill(grid, matrix)
@@ -60,6 +65,11 @@ def main():
 			if visualize_data == 'Y':
 				total_score = score.calculate(grid, matrix)
 				tk_export.create(matrix, grid, (str(total_score) + " (before hill climbing)"))
+
+				matrix_before = Matrix(info.grid_length,info.grid_width)
+				matrix_before.grid = grid.copy()
+				grid_before = matrix_before.grid
+				score_before = total_score
 
 			hc_data = algorithm.hill_climbing.start(matrix, grid)
 
@@ -79,10 +89,19 @@ def main():
 
 			# save best grid
 			if total_score > highest_score:
+
+				if chosen_algorithm == 2 or chosen_algorithm == 4:
+					# before HC
+					highest_matrix_before = matrix_before
+					highest_grid_before = grid_before
+					highest_score_before = score_before
+
+				# after HC
 				highest_matrix = matrix
 				highest_grid = grid
 				highest_score = total_score
-				matrix.export(highest_grid)
+				hc_data_highest = hc_data
+				#matrix.export(highest_grid)
 
 			if total_score < lowest_score:
 				lowest_matrix = matrix
@@ -103,8 +122,13 @@ def main():
 	# use tkinter to visualize grid
 	if visualize_data == 'Y':
 		if number_of_runs == 1:
-			tk_export.create(highest_matrix, highest_grid, str(lowest_score))
+			if chosen_algorithm == 2 or chosen_algorithm == 4:
+				tk_export.create(highest_matrix_before, highest_grid_before, (str(highest_score_before) + "(highest score before HC)"))
+			tk_export.create(highest_matrix, highest_grid, (str(lowest_score) + "(highest score after HC)"))
 		else:
+			if chosen_algorithm == 2 or chosen_algorithm == 4:
+				tk_export.create(highest_matrix_before, highest_grid_before, (str(highest_score_before) + "(before HC)"))
+				tk_export.create(highest_matrix, highest_grid, (str(highest_score) + "(after HC)"))
 			tk_export.create(lowest_matrix, lowest_grid, (str(lowest_score) + " (lowest score)"))
 			tk_export.create(highest_matrix, highest_grid, (str(highest_score) + " (highest score)"))
 
@@ -113,26 +137,34 @@ def main():
 	import library.plot_export as plot_export
 
 	if (chosen_algorithm == 2 or chosen_algorithm == 4) and plot_data == 'Y':
-		plot_export.line(hc_data)
+		plot_export.line(hc_data_highest)
 
 	if plot_data == 'Y' and number_of_runs > 1:
 		plot_export.normal(data, total_score)
 
 # Request user input the first time
 def start():
-	print("Choose algorithm:")
 	print("1: Random")
 	print("2: Random + Hill climbing")
 	print("3: Greedy")
 	print("4: Greedy + Hill climbing")
 
-	chosen_algorithm = input("Algorithm: ")
+	chosen_algorithm = input("Choose algorithm: ")
 	while (len(str(chosen_algorithm)) > 1 or
 	chosen_algorithm.isdigit() == False or
 	int(chosen_algorithm) > 4 or
 	int(chosen_algorithm) <= 0):
 		print("Invalid input, try again.")
-		chosen_algorithm = input("Algorithm: ")
+		chosen_algorithm = input("Choose algorithm: ")
+
+	print("1:            2:\n◼︎ ◼︎ ◼︎ ◼︎ ◻︎ ◻︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◼︎ ◼︎ ◻︎ ◻︎ ◻︎ ◻︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◼︎ ◼︎ ◻︎ ◻︎ ◻︎ ◻︎   ◻︎ ◻︎ ◻︎ ◻︎ ◻︎ ◻︎\n◻︎ ◻︎ ◻︎ ◻︎ ◼︎ ◼︎   ◻︎ ◻︎ ◻︎ ◻︎ ◻︎ ◻︎\n◻︎ ◻︎ ◻︎ ◻︎ ◼︎ ◼︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◻︎ ◻︎ ◼︎ ◼︎ ◼︎ ◼︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎")
+	water_layout = input("Choose water layout: ")
+	while (len(str(water_layout)) > 1 or
+	water_layout.isdigit() == False or
+	int(water_layout) > 2 or
+	int(water_layout) <= 0):
+		print("Invalid input, try again.")
+		water_layout = input("Choose water layout: ")
 
 	number_of_runs = input("Number of runs: ")
 	while (number_of_runs.isdigit() == False or int(number_of_runs) <= 0):
@@ -151,7 +183,7 @@ def start():
 		print("Invalid input, try again.")
 		plot_data = input("Plot data (y/n): ")
 
-	return int(chosen_algorithm), int(number_of_runs), visualize_data.upper()[0], plot_data.upper()[0]
+	return int(chosen_algorithm), int(water_layout), int(number_of_runs), visualize_data.upper()[0], plot_data.upper()[0]
 
 if __name__ == "__main__":
 	main()
