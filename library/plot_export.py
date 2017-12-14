@@ -14,10 +14,10 @@ def normal(data, score):
     x = np.linspace(xmin, xmax, 100)
     p = norm.pdf(x, mu, std)
     plt.plot(x, p, 'k', linewidth=2)
-    title = "Fit results: mu = %.2f,  std = %.2f, max score = %i, n = %i" % (mu, std, score, len(data))
+    title = "Fit results: mu = %.2f,  std = %.2f,\n max score = %i, n = %i" % (mu, std, score, len(data))
     plt.title(title)
 
-    plt.figure(figsize=(20,10))
+    #plt.figure(figsize=(20,10))
 
 
     plt.savefig("export/normal.png")

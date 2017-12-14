@@ -58,7 +58,8 @@ def main():
 		if chosen_algorithm == 3 or chosen_algorithm == 4:
 			algorithm.greedy.fill(grid, matrix)
 
-		print(grid)
+		# print(grid)
+		print("grid success")
 
 		# execute hill climbing algorithm
 		if chosen_algorithm == 2 or chosen_algorithm == 4:
@@ -140,7 +141,7 @@ def main():
 		plot_export.line(hc_data_highest)
 
 	if plot_data == 'Y' and number_of_runs > 1:
-		plot_export.normal(data, total_score)
+		plot_export.normal(data, highest_score)
 
 # Request user input the first time
 def start():
@@ -149,22 +150,22 @@ def start():
 	print("3: Greedy")
 	print("4: Greedy + Hill climbing")
 
-	chosen_algorithm = input("Choose algorithm: ")
+	chosen_algorithm = input("Algorithm: ")
 	while (len(str(chosen_algorithm)) > 1 or
 	chosen_algorithm.isdigit() == False or
 	int(chosen_algorithm) > 4 or
 	int(chosen_algorithm) <= 0):
 		print("Invalid input, try again.")
-		chosen_algorithm = input("Choose algorithm: ")
+		chosen_algorithm = input("Algorithm: ")
 
 	print("1:            2:\n◼︎ ◼︎ ◼︎ ◼︎ ◻︎ ◻︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◼︎ ◼︎ ◻︎ ◻︎ ◻︎ ◻︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◼︎ ◼︎ ◻︎ ◻︎ ◻︎ ◻︎   ◻︎ ◻︎ ◻︎ ◻︎ ◻︎ ◻︎\n◻︎ ◻︎ ◻︎ ◻︎ ◼︎ ◼︎   ◻︎ ◻︎ ◻︎ ◻︎ ◻︎ ◻︎\n◻︎ ◻︎ ◻︎ ◻︎ ◼︎ ◼︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◻︎ ◻︎ ◼︎ ◼︎ ◼︎ ◼︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎")
-	water_layout = input("Choose water layout: ")
+	water_layout = input("Water layout: ")
 	while (len(str(water_layout)) > 1 or
 	water_layout.isdigit() == False or
 	int(water_layout) > 2 or
 	int(water_layout) <= 0):
 		print("Invalid input, try again.")
-		water_layout = input("Choose water layout: ")
+		water_layout = input("Water layout: ")
 
 	number_of_runs = input("Number of runs: ")
 	while (number_of_runs.isdigit() == False or int(number_of_runs) <= 0):

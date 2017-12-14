@@ -37,7 +37,7 @@ def start(matrix, grid):
 
 	print(len(hc_data))
 
-	print(hc_data)
+	# print(hc_data)
 
 	return hc_data
 

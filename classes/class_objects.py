@@ -85,11 +85,11 @@ class Matrix:
 				#for y in range((house.ycor - free), y_opp + free + house.ycor):
 					if (x >= info.grid_length or y >= info.grid_width or x < 0 or y < 0):
 						house.free = free - 1
-						print(house.free)
+						# print(house.free)
 						return free - 1
 					elif (self.grid[x, y] != 'v' and self.grid[x, y] != name):
 						house.free = free - 1
-						print(house.free)
+						# print(house.free)
 						return free - 1
 
 			free+=1
@@ -120,18 +120,18 @@ class Matrix:
 			check_b = self.check(house_b.length, house_b.width, eval("info.house_" + str.lower(house_a.id[:1]) + "_free"), house_b_xcor_new, house_b_ycor_new)
 		else:
 			check_b = self.check(house_b.length, house_b.width, eval("info.house_" + str.lower(house_b.id[:1]) + "_free"), house_b_xcor_new, house_b_ycor_new)
-		print("checks: {}, {}" .format(check_a, check_b))
+		# print("checks: {}, {}" .format(check_a, check_b))
 
 		# if houses can be swapped, place houses on new location
 		if (check_a == 0 and check_b == 0):
-			print("old: house_a.xcor, ycor: {}, {}" .format(house_a.xcor, house_a.ycor))
+			# print("old: house_a.xcor, ycor: {}, {}" .format(house_a.xcor, house_a.ycor))
 			self.place(house_a.length, house_a.width, house_a_xcor_new, house_a_ycor_new, house_a.id)
 			self.place(house_b.length, house_b.width, house_b_xcor_new, house_b_ycor_new, house_b.id)
 
 			# update dictionary
 			house_a.xcor, house_a.ycor = house_a_xcor_new, house_a_ycor_new
 			house_b.xcor, house_b.ycor = house_b_xcor_new, house_b_ycor_new
-			print("new: house_a.xcor, ycor: {}, {}" .format(house_a.xcor, house_a.ycor))
+			# print("new: house_a.xcor, ycor: {}, {}" .format(house_a.xcor, house_a.ycor))
 
 		# if houses cannot be swapped, place houses on original location
 		else:

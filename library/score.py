@@ -14,7 +14,7 @@ def calculate(grid, matrix):
 		if score == 1:
 			return 1
 		total_score = total_score + score
-		print("{} score: {}" .format(hd.houses_e[i].id, score))
+		# print("{} score: {}" .format(hd.houses_e[i].id, score))
 
 	for i in hd.houses_b:
 		#matrix.free_space(grid, hd.houses_b[i], hd.houses_b[i].id, info.house_b_length, info.house_b_width)
@@ -22,7 +22,7 @@ def calculate(grid, matrix):
 		total_score = total_score + score
 		if score == 1:
 			return 1
-		print("{} score: {}" .format(hd.houses_b[i].id, score))
+		# print("{} score: {}" .format(hd.houses_b[i].id, score))
 
 	for i in hd.houses_m:
 		#matrix.free_space(grid, hd.houses_m[i], hd.houses_m[i].id, info.house_m_length, info.house_m_width)
@@ -30,7 +30,7 @@ def calculate(grid, matrix):
 		total_score = total_score + score
 		if score == 1:
 			return 1
-		print("{} score: {}" .format(hd.houses_m[i].id, score))
+		# print("{} score: {}" .format(hd.houses_m[i].id, score))
 
 	print("Total score: {}" .format(total_score))
 

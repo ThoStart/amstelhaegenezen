@@ -25,7 +25,7 @@ def fill(grid, matrix):
 			hd.houses_e[hd.house_e_counter] = House(info.house_e_type, ("E{0:02}".format(hd.house_e_counter)), info.house_e_free, info.house_e_value, x_coordinate, y_coordinate, info.house_e_length, info.house_e_width)
 			matrix.place(info.house_e_length, info.house_e_width, x_coordinate, y_coordinate, hd.houses_e[hd.house_e_counter].id)
 
-			print("success {}".format(hd.houses_e[hd.house_e_counter].id))
+			# print("success {}".format(hd.houses_e[hd.house_e_counter].id))
 
 			hd.house_e_counter = hd.house_e_counter + 1
 
@@ -48,7 +48,7 @@ def fill(grid, matrix):
 			hd.houses_b[hd.house_b_counter] = House(info.house_b_type, ("B{0:02}".format(hd.house_b_counter)), info.house_b_free, info.house_b_value, x_coordinate, y_coordinate, info.house_b_length, info.house_b_width)
 			matrix.place(info.house_b_length, info.house_b_width, x_coordinate, y_coordinate, hd.houses_b[hd.house_b_counter].id)
 
-			print("success {}".format(hd.houses_b[hd.house_b_counter].id))
+			# print("success {}".format(hd.houses_b[hd.house_b_counter].id))
 
 			hd.house_b_counter = hd.house_b_counter + 1
 
@@ -68,7 +68,7 @@ def fill(grid, matrix):
 				hd.houses_b[hd.house_b_counter] = House(info.house_b_type, ("B{0:02}".format(hd.house_b_counter)), info.house_b_free, info.house_b_value, x_coordinate, y_coordinate, info.house_b_width, info.house_b_length)
 				matrix.place(info.house_b_width, info.house_b_length, x_coordinate, y_coordinate, hd.houses_b[hd.house_b_counter].id)
 
-				print("success {}".format(hd.houses_b[hd.house_b_counter].id))
+				# print("success {}".format(hd.houses_b[hd.house_b_counter].id))
 
 				hd.house_b_counter = hd.house_b_counter + 1
 
@@ -95,7 +95,7 @@ def fill(grid, matrix):
 			hd.houses_m[hd.house_m_counter] = House(info.house_m_type, ("M{0:02}".format(hd.house_m_counter)), info.house_m_free, info.house_m_value,  x_coordinate, y_coordinate, info.house_m_length, info.house_m_width)
 			matrix.place(info.house_m_length, info.house_m_width, x_coordinate, y_coordinate, hd.houses_m[hd.house_m_counter].id)
 
-			print("success {}".format(hd.houses_m[hd.house_m_counter].id))
+			# print("success {}".format(hd.houses_m[hd.house_m_counter].id))
 
 			hd.house_m_counter = hd.house_m_counter + 1
 
@@ -115,7 +115,7 @@ def fill(grid, matrix):
 				hd.houses_m[hd.house_m_counter] = House(info.house_m_type, ("M{0:02}".format(hd.house_m_counter)), info.house_m_free, info.house_m_value,  x_coordinate, y_coordinate, info.house_m_width, info.house_m_length)
 				matrix.place(info.house_m_width, info.house_m_length, x_coordinate, y_coordinate, hd.houses_m[hd.house_m_counter].id)
 
-				print("success {}".format(hd.houses_m[hd.house_m_counter].id))
+				# print("success {}".format(hd.houses_m[hd.house_m_counter].id))
 
 				hd.house_m_counter = hd.house_m_counter + 1
 
