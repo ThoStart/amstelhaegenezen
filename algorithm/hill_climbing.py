@@ -2,6 +2,7 @@ from classes.class_objects import House, Water, Matrix
 import library.setup as info
 import library.house_dictionary as hd
 import library.score as score
+import numpy as np
 import random
 
 def start(matrix, grid):
@@ -12,21 +13,22 @@ def start(matrix, grid):
 	execute_swap(grid, matrix, hc_data, hd.houses_m, hd.houses_e)
 	execute_swap(grid, matrix, hc_data, hd.houses_e, hd.houses_b)
 
-	number_of_iterations = 1000 - len(hc_data) - len(hc_data)
+	swap_number = len(hc_data)
+	number_of_iterations = 1000 - (swap_number * 2)
 
-	for times in range(int(number_of_iterations / info.number_of_houses)):
+	for times in range(int(np.ceil(number_of_iterations / info.number_of_houses))):
 		for i in hd.houses_e:
-			if len(hc_data) >= 1000:
+			if len(hc_data) >= number_of_iterations + swap_number:
 				break
-			execute_random(grid, matrix, hc_data,hd.houses_e[i])
+			execute_random(grid, matrix, hc_data,hd.houses_e[i], swap_number)
 		for i in hd.houses_b:
-			if len(hc_data) >= 1000:
+			if len(hc_data) >= number_of_iterations + swap_number:
 				break
-			execute_random(grid, matrix, hc_data,hd.houses_b[i])
+			execute_random(grid, matrix, hc_data,hd.houses_b[i], swap_number)
 		for i in hd.houses_m:
-			if len(hc_data) >= 1000:
+			if len(hc_data) >= number_of_iterations + swap_number:
 				break
-			execute_random(grid, matrix, hc_data,hd.houses_m[i])
+			execute_random(grid, matrix, hc_data,hd.houses_m[i], swap_number)
 
 	execute_swap(grid, matrix, hc_data, hd.houses_e, hd.houses_b)
 	execute_swap(grid, matrix, hc_data, hd.houses_b, hd.houses_m)
@@ -55,7 +57,11 @@ def execute_swap(grid, matrix, hc_data, houses_a, houses_b):
 				total_score = total_score_new
 				hc_data.append(total_score)
 
-def execute_random(grid, matrix, hc_data, house):
+def execute_random(grid, matrix, hc_data, house, swap_number):
+
+	if len(hc_data) >= (1000 - swap_number):
+		return 0
+
 	total_score = score.calculate(grid, matrix)
 
 	house_x_free = eval("info.house_" + str.lower(house.id[:1]) + "_free")
