@@ -27,7 +27,7 @@ def normal(data, score):
     return(0)
 
 # use matplotlib to visualize line graph
-def line(data):
+def line(data, chosen_algorithm):
 
     xaxis_array = []
 
@@ -37,11 +37,17 @@ def line(data):
     plt.plot(xaxis_array, data, 'r--')
     plt.axis([0, len(data), min(data) - 500000, max(data) + 500000])
 
-    title = "Hill climbing"
+    if chosen_algorithm == 2 or chosen_algorithm == 5:
+        title = "Hill climbing"
+    else:
+        title = "Simulated annealing"
 
     plt.title(title)
 
-    plt.savefig("export/hill_climbing.png")
+    if chosen_algorithm == 2 or chosen_algorithm == 5:
+        plt.savefig("export/hill_climbing.png")
+    else:
+        plt.savefig("export/simulated_annealing.png")
 
     plt.show()
 

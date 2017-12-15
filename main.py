@@ -52,33 +52,40 @@ def main():
 		water.fill(matrix, grid, water_layout)
 
 		# fill grid with random algorithm
-		if chosen_algorithm == 1 or chosen_algorithm == 2:
+		if chosen_algorithm == 1 or chosen_algorithm == 2 or chosen_algorithm == 3:
 			algorithm.random.fill(grid, matrix)
 
 		# fill grid with greedy algorithm
-		if chosen_algorithm == 3 or chosen_algorithm == 4:
+		if chosen_algorithm == 4 or chosen_algorithm == 5 or chosen_algorithm == 6:
 			algorithm.greedy.fill(grid, matrix)
 
-		# print(grid)
 		print("grid success")
 
 		# execute hill climbing algorithm
-		if chosen_algorithm == 2 or chosen_algorithm == 4:
+		if chosen_algorithm == 2 or chosen_algorithm == 3 or chosen_algorithm == 5 or chosen_algorithm == 6:
 			if visualize_data == 'Y':
 				total_score = score.calculate(grid, matrix)
-				tk_export.create(matrix, grid, (str(total_score) + " (before hill climbing)"))
+				if chosen_algorithm == 2 or chosen_algorithm == 5:
+					tk_export.create(matrix, grid, (str(total_score) + " (before hill climbing)"))
+				else:
+					tk_export.create(matrix, grid, (str(total_score) + " (before simulated annealing)"))
 
 				matrix_before = Matrix(info.grid_length,info.grid_width)
 				matrix_before.grid = grid.copy()
 				grid_before = matrix_before.grid
 				score_before = total_score
 
-			#hc_data = algorithm.hill_climbing.start(matrix, grid)
-			hc_data = algorithm.SimulatedAnnealing.start(matrix, grid)
+			if chosen_algorithm == 2 or chosen_algorithm == 5:
+				hc_data = algorithm.hill_climbing.start(matrix, grid)
+			elif chosen_algorithm == 3 or chosen_algorithm == 6:
+				hc_data = algorithm.SimulatedAnnealing.start(matrix, grid)
 
 			if visualize_data == 'Y':
 				total_score = score.calculate(grid, matrix)
-				tk_export.create(matrix, grid, (str(total_score) + " (after hill climbing)"))
+				if chosen_algorithm == 2 or chosen_algorithm == 5:
+					tk_export.create(matrix, grid, (str(total_score) + " (after hill climbing)"))
+				else:
+					tk_export.create(matrix, grid, (str(total_score) + " (after simulated annealing)"))
 
 		# generate total score
 		total_score = score.calculate(grid, matrix)
@@ -93,7 +100,7 @@ def main():
 			# save best grid
 			if total_score > highest_score:
 
-				if chosen_algorithm == 2 or chosen_algorithm == 4:
+				if chosen_algorithm == 2 or chosen_algorithm == 3 or chosen_algorithm == 5 or chosen_algorithm == 6:
 					# before HC
 					highest_matrix_before = matrix_before
 					highest_grid_before = grid_before
@@ -125,13 +132,19 @@ def main():
 	# use tkinter to visualize grid
 	if visualize_data == 'Y':
 		if number_of_runs == 1:
-			if chosen_algorithm == 2 or chosen_algorithm == 4:
-				tk_export.create(highest_matrix_before, highest_grid_before, (str(highest_score_before) + "(highest score before HC)"))
-			tk_export.create(highest_matrix, highest_grid, (str(lowest_score) + "(highest score after HC)"))
+			if chosen_algorithm == 2 or chosen_algorithm == 5:
+				tk_export.create(highest_matrix_before, highest_grid_before, (str(highest_score_before) + " (highest score before HC)"))
+				tk_export.create(highest_matrix, highest_grid, (str(lowest_score) + " (highest score after HC)"))
+			elif chosen_algorithm == 3 or chosen_algorithm == 6:
+				tk_export.create(highest_matrix_before, highest_grid_before, (str(highest_score_before) + " (highest score before SA)"))
+				tk_export.create(highest_matrix, highest_grid, (str(lowest_score) + " (highest score after SA)"))
 		else:
-			if chosen_algorithm == 2 or chosen_algorithm == 4:
-				tk_export.create(highest_matrix_before, highest_grid_before, (str(highest_score_before) + "(before HC)"))
-				tk_export.create(highest_matrix, highest_grid, (str(highest_score) + "(after HC)"))
+			if chosen_algorithm == 2 or chosen_algorithm == 5:
+				tk_export.create(highest_matrix_before, highest_grid_before, (str(highest_score_before) + " (before HC)"))
+				tk_export.create(highest_matrix, highest_grid, (str(highest_score) + " (after HC)"))
+			elif chosen_algorithm == 3 or chosen_algorithm == 6:
+				tk_export.create(highest_matrix_before, highest_grid_before, (str(highest_score_before) + " (before SA)"))
+				tk_export.create(highest_matrix, highest_grid, (str(highest_score) + " (after SA)"))
 			tk_export.create(lowest_matrix, lowest_grid, (str(lowest_score) + " (lowest score)"))
 			tk_export.create(highest_matrix, highest_grid, (str(highest_score) + " (highest score)"))
 
@@ -139,8 +152,8 @@ def main():
 	# imported here due to matplotlib interfering with tkinter
 	import library.plot_export as plot_export
 
-	if (chosen_algorithm == 2 or chosen_algorithm == 4) and plot_data == 'Y':
-		plot_export.line(hc_data_highest)
+	if (chosen_algorithm == 2 or chosen_algorithm == 3 or chosen_algorithm == 5 or chosen_algorithm == 6) and plot_data == 'Y':
+		plot_export.line(hc_data_highest, chosen_algorithm)
 
 	if plot_data == 'Y' and number_of_runs > 1:
 		plot_export.normal(data, highest_score)
@@ -149,13 +162,15 @@ def main():
 def start():
 	print("1: Random")
 	print("2: Random + Hill climbing")
-	print("3: Greedy")
-	print("4: Greedy + Hill climbing")
+	print("3: Random + Simulated annealing")
+	print("4: Greedy")
+	print("5: Greedy + Hill climbing")
+	print("6: Greedy + Simulated annealing")
 
 	chosen_algorithm = input("Algorithm: ")
 	while (len(str(chosen_algorithm)) > 1 or
 	chosen_algorithm.isdigit() == False or
-	int(chosen_algorithm) > 4 or
+	int(chosen_algorithm) > 6 or
 	int(chosen_algorithm) <= 0):
 		print("Invalid input, try again.")
 		chosen_algorithm = input("Algorithm: ")
