@@ -5,6 +5,8 @@ import library.tk_export as tk_export
 import library.score as score
 import numpy as np
 from copy import copy, deepcopy
+from time import sleep
+import library.progressbar as progressbar
 
 def start(matrix, grid):
 	temp_houses_e, temp_houses_b, temp_houses_m = dict(), dict(), dict()
@@ -25,8 +27,14 @@ def start(matrix, grid):
 	#min_temperature = 0
 	max_temperature = 5
 	#save_best_grid()
+	iteration = 0
+	total = 111
 
-	# before hill climbing algorithm
+	print("Simulated Annealing:")
+	# Initial call to print 0% progress
+	progressbar.printProgressBar(iteration, total, prefix = 'Progress:', suffix = 'Complete', length = 50)
+
+	# before simulated annealing algorithm
 	total_score = score.calculate(grid, matrix)
 	#tk_export.create(matrix, grid, (str(total_score) + " (before hill climbing)"))
 
@@ -37,6 +45,11 @@ def start(matrix, grid):
 	# swap E and B
 	for i in hd.houses_e:
 		for j in hd.houses_b:
+
+			 # Update Progress Bar
+			iteration+=1
+			progressbar.printProgressBar(iteration + 1, total, prefix = 'Progress:', suffix = 'Complete', length = 50)
+
 			Matrix.swap(matrix, grid, hd.houses_e[i], hd.houses_b[j])
 			total_score_new = score.calculate(grid, matrix)
 			total_score_sims = score.calculate_annealing(thesims_grid, sim_an_matrix, temp_houses_e, temp_houses_b, temp_houses_m)
@@ -54,6 +67,11 @@ def start(matrix, grid):
 	# swap B and M
 	for i in hd.houses_b:
 		for j in hd.houses_m:
+
+			# Update Progress Bar
+			iteration+=1
+			progressbar.printProgressBar(iteration + 1, total, prefix = 'Progress:', suffix = 'Complete', length = 50)
+
 			Matrix.swap(matrix, grid, hd.houses_b[i], hd.houses_m[j])
 			total_score_new = score.calculate(grid, matrix)
 
@@ -72,6 +90,11 @@ def start(matrix, grid):
 	# swap E and M
 	for i in hd.houses_e:
 		for j in hd.houses_m:
+
+			# Update Progress Bar
+			iteration+=1
+			progressbar.printProgressBar(iteration, total, prefix = 'Progress:', suffix = 'Complete', length = 50)
+
 			Matrix.swap(matrix, grid, hd.houses_e[i], hd.houses_m[j])
 			total_score_new = score.calculate(grid, matrix)
 
@@ -90,7 +113,7 @@ def start(matrix, grid):
 	if total_score_new > total_score:
 		total_score = total_score_new
 		sa_grid = grid.copy()
-		
+
 	total_score_lala = score.calculate_annealing(thesims_grid, sim_an_matrix, temp_houses_e, temp_houses_b, temp_houses_m)
 
 	if total_score_lala >= total_score:
