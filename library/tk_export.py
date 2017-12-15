@@ -96,8 +96,9 @@ def create(mtrx, grd, score):
 
 
 def getter(root,widget,score):
-    x=root.winfo_rootx()*2+widget.winfo_x()
-    y=root.winfo_rooty()*2+widget.winfo_y()
-    x1=x+widget.winfo_width() * 2
-    y1=y+widget.winfo_height() * 2
+    # after hashes in case of double ppi displays 
+    x=root.winfo_rootx()+widget.winfo_x()#x=root.winfo_rootx()*2+widget.winfo_x()
+    y=root.winfo_rooty()+widget.winfo_y()#y=root.winfo_rooty()*2+widget.winfo_y()
+    x1=x+widget.winfo_width() #* 2
+    y1=y+widget.winfo_height() #* 2
     ImageGrab.grab().crop((x,y,x1,y1)).save("export/" + score + ".png")
