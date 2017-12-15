@@ -4,6 +4,7 @@ from classes.class_objects import House, Water, Matrix
 import algorithm.random
 import algorithm.greedy
 import algorithm.hill_climbing
+import algorithm.SimulatedAnnealing
 import library.score as score
 import library.setup as info
 import library.house_dictionary as hd
@@ -72,7 +73,8 @@ def main():
 				grid_before = matrix_before.grid
 				score_before = total_score
 
-			hc_data = algorithm.hill_climbing.start(matrix, grid)
+			#hc_data = algorithm.hill_climbing.start(matrix, grid)
+			hc_data = algorithm.SimulatedAnnealing.start(matrix, grid)
 
 			if visualize_data == 'Y':
 				total_score = score.calculate(grid, matrix)
