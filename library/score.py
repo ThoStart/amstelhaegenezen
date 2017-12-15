@@ -32,7 +32,7 @@ def calculate(grid, matrix):
 			return 1
 		# print("{} score: {}" .format(hd.houses_m[i].id, score))
 
-	print("Total score: {}" .format(total_score))
+	# print("Total score: {}" .format(total_score))
 
 	return(total_score)
 
@@ -65,6 +65,6 @@ def calculate_annealing(grid, matrix, dicta, dictb, dictc):
 			return 1
 		# print("{} score: {}" .format(hd.houses_m[i].id, score))
 
-	print("Total score: {}" .format(total_score))
+	# print("Total score: {}" .format(total_score))
 
 	return(total_score)
