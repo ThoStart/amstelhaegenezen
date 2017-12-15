@@ -63,17 +63,18 @@ def main():
 
 		# execute hill climbing algorithm
 		if chosen_algorithm == 2 or chosen_algorithm == 3 or chosen_algorithm == 5 or chosen_algorithm == 6:
-			if visualize_data == 'Y':
-				total_score = score.calculate(grid, matrix)
+			total_score = score.calculate(grid, matrix)
+
+			if visualize_data == 'Y':	
 				if chosen_algorithm == 2 or chosen_algorithm == 5:
 					tk_export.create(matrix, grid, (str(total_score) + " (before hill climbing)"))
 				else:
 					tk_export.create(matrix, grid, (str(total_score) + " (before simulated annealing)"))
 
-				matrix_before = Matrix(info.grid_length,info.grid_width)
-				matrix_before.grid = grid.copy()
-				grid_before = matrix_before.grid
-				score_before = total_score
+			matrix_before = Matrix(info.grid_length,info.grid_width)
+			matrix_before.grid = grid.copy()
+			grid_before = matrix_before.grid
+			score_before = total_score
 
 			if chosen_algorithm == 2 or chosen_algorithm == 5:
 				hc_data = algorithm.hill_climbing.start(matrix, grid)
