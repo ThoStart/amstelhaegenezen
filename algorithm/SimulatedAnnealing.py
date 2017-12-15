@@ -7,18 +7,19 @@ import numpy as np
 from copy import copy, deepcopy
 
 def start(matrix, grid):
+	temp_houses_e, temp_houses_b, temp_houses_m = dict(), dict(), dict()
 
 	simulated_annealing_matrix = Matrix(info.grid_length, info.grid_width)
 	sa_grid = simulated_annealing_matrix.grid
-	np.copyto(sa_grid, grid)
+	sa_grid = deepcopy(grid)
 
 	sim_an_matrix = Matrix(info.grid_length, info.grid_width)
 	thesims_grid = sim_an_matrix.grid
 	# np.copyto(thesims_grid, grid)
 
-	hd.temp_houses_e = deepcopy(hd.houses_e)
-	hd.temp_houses_b = deepcopy(hd.houses_b)
-	hd.temp_houses_m = deepcopy(hd.houses_m)
+	temp_houses_e = deepcopy(hd.houses_e)
+	temp_houses_b = deepcopy(hd.houses_b)
+	temp_houses_m = deepcopy(hd.houses_m)
 
 	temperature = 0
 	#min_temperature = 0
@@ -38,14 +39,15 @@ def start(matrix, grid):
 		for j in hd.houses_b:
 			Matrix.swap(matrix, grid, hd.houses_e[i], hd.houses_b[j])
 			total_score_new = score.calculate(grid, matrix)
+			total_score_sims = score.calculate_annealing(thesims_grid, sim_an_matrix, temp_houses_e, temp_houses_b, temp_houses_m)
 
-			if total_score_new >= total_score:
-				hd.temp_houses_e = deepcopy(hd.houses_e)
-				hd.temp_houses_b = deepcopy(hd.houses_b)
-				hd.temp_houses_m = deepcopy(hd.houses_m)
+			if total_score_new >= total_score_sims:
+				temp_houses_e = deepcopy(hd.houses_e)
+				temp_houses_b = deepcopy(hd.houses_b)
+				temp_houses_m = deepcopy(hd.houses_m)
 				np.copyto(thesims_grid, grid)
 
-			total_score_sims = score.calculate_deux(thesims_grid, sim_an_matrix)
+			total_score_sims = score.calculate_annealing(thesims_grid, sim_an_matrix, temp_houses_e, temp_houses_b, temp_houses_m)
 
 			total_score, temperature = check_for_simulated_annealing(hc_data, temperature, max_temperature, total_score, total_score_new, simulated_annealing_matrix, grid, sa_grid)
 
@@ -55,15 +57,15 @@ def start(matrix, grid):
 			Matrix.swap(matrix, grid, hd.houses_b[i], hd.houses_m[j])
 			total_score_new = score.calculate(grid, matrix)
 
-			# total_score_sims = score.calculate_deux(thesims_grid, sim_an_matrix)
+			total_score_sims = score.calculate_annealing(thesims_grid, sim_an_matrix, temp_houses_e, temp_houses_b, temp_houses_m)
 
-			if total_score_new >= total_score:
-				hd.temp_houses_e = deepcopy(hd.houses_e)
-				hd.temp_houses_b = deepcopy(hd.houses_b)
-				hd.temp_houses_m = deepcopy(hd.houses_m)
+			if total_score_new >= total_score_sims:
+				temp_houses_e = deepcopy(hd.houses_e)
+				temp_houses_b = deepcopy(hd.houses_b)
+				temp_houses_m = deepcopy(hd.houses_m)
 				np.copyto(thesims_grid, grid)
 
-			total_score_sims = score.calculate_deux(thesims_grid, sim_an_matrix)
+			total_score_sims = score.calculate_annealing(thesims_grid, sim_an_matrix, temp_houses_e, temp_houses_b, temp_houses_m)
 
 			total_score, temperature = check_for_simulated_annealing(hc_data, temperature, max_temperature, total_score, total_score_new, simulated_annealing_matrix, grid, sa_grid)
 
@@ -73,45 +75,33 @@ def start(matrix, grid):
 			Matrix.swap(matrix, grid, hd.houses_e[i], hd.houses_m[j])
 			total_score_new = score.calculate(grid, matrix)
 
-			total_score_sims = score.calculate_deux(thesims_grid, sim_an_matrix)
+			total_score_sims = score.calculate_annealing(thesims_grid, sim_an_matrix, temp_houses_e, temp_houses_b, temp_houses_m)
 
-			if total_score_new >= total_score:
-				hd.temp_houses_e = deepcopy(hd.houses_e)
-				hd.temp_houses_b = deepcopy(hd.houses_b)
-				hd.temp_houses_m = deepcopy(hd.houses_m)
+			if total_score_new >= total_score_sims:
+				temp_houses_e = deepcopy(hd.houses_e)
+				temp_houses_b = deepcopy(hd.houses_b)
+				temp_houses_m = deepcopy(hd.houses_m)
 				np.copyto(thesims_grid, grid)
 
-			total_score_sims = score.calculate_deux(thesims_grid, sim_an_matrix)
+			total_score_sims = score.calculate_annealing(thesims_grid, sim_an_matrix, temp_houses_e, temp_houses_b, temp_houses_m)
 
 			total_score, temperature = check_for_simulated_annealing(hc_data, temperature, max_temperature, total_score, total_score_new, simulated_annealing_matrix, grid, sa_grid)
 
 	if total_score_new > total_score:
 		total_score = total_score_new
 		sa_grid = grid.copy()
-		print("yeah")
-
-
-	total_score_lala = score.calculate_deux(thesims_grid, sim_an_matrix)
+		
+	total_score_lala = score.calculate_annealing(thesims_grid, sim_an_matrix, temp_houses_e, temp_houses_b, temp_houses_m)
 
 	if total_score_lala >= total_score:
 		total_score = total_score_lala
-		hd.houses_e = deepcopy(hd.temp_houses_e)
-		hd.houses_b = deepcopy(hd.temp_houses_b)
-		hd.houses_m = deepcopy(hd.temp_houses_m)
+		hd.houses_e = deepcopy(temp_houses_e)
+		hd.houses_b = deepcopy(temp_houses_b)
+		hd.houses_m = deepcopy(temp_houses_m)
 		grid = np.copy(thesims_grid)
-		print("sims")
 
-
-	print(hd.houses_m)
-	print(hd.temp_houses_m)
-
-	# grid = sa_grid.copy()
-	print(hc_data)
-	print("yolo {}".format(total_score))
 	total_score = score.calculate(grid, matrix)
-	print("yolo2 {}".format(total_score))
 	total_score = score.calculate(sa_grid, simulated_annealing_matrix)
-	print("yolo3 {}".format(total_score))
 
 
 	return hc_data
@@ -127,19 +117,14 @@ def check_for_simulated_annealing(hc_data, temperature, max_temperature, total_s
 		# grid = simulated_annealing_matrix.grid
 		if total_score_new > total_score:
 			total_score = total_score_new
-			np.copyto(sa_grid, grid)
-			print("yoyoyoyo")
+			sa_grid = deepcopy(grid)
 			hc_data.append(total_score_new)
 		else:
-			np.copyto(grid, sa_grid)
+			grid = deepcopy(sa_grid)
 			hc_data.append(total_score_new)
 
 			for i in range(max_temperature):
 				hc_data.pop()
-
-		# 	# verwijder laatste temp keer uit hc data
-			# del hc_data[-(temperature)]
-			# hc_data = hc_data[-temperature]
 
 		temperature = 0
 
