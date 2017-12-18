@@ -23,7 +23,7 @@ def start(matrix, grid):
 	temp_houses_m = deepcopy(hd.houses_m)
 
 	temperature = 0
-	max_temperature = 5
+	max_temperature = 10
 	iteration = 0
 	total = 111
 
@@ -145,5 +145,6 @@ def check_for_simulated_annealing(hc_data, temperature, max_temperature, total_s
 				hc_data.pop()
 
 		temperature = 0
+		max_temperature-=1
 
 	return total_score, temperature
