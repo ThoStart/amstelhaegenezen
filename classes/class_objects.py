@@ -23,21 +23,6 @@ class Matrix:
 		self.ysize = ysize
 		self.grid = np.full((self.xsize, self.ysize), fill_value='xxx', dtype=None)
 		self.grid.fill('v')
-		#return(grid)
-
-	# finds empty coordinate
-	def findemptyspot(self, xsize, ysize):
-		for x in range(xsize):
-			for y in range(ysize):
-				if (self.grid[x, y] == 'v'):
-					return x,y
-		else:
-			return 0
-
-	# random kiezen welk huis meest waard is
-	# def worth
-	# dus eerste Eengezinswoning die is namelijk het meeste waard
-
 
 	# checks if enough space around empty coordinate for house
 	def check(self, x_opp, y_opp, free, x_coordinate, y_coordinate):
@@ -59,42 +44,15 @@ class Matrix:
 				if (x >= info.grid_length or y >= info.grid_width or x < 0 or y < 0 or 'M' in self.grid[x, y]):
 					return 1
 		return 0
-	# a = np.where(matrix == 'v')
-	# print(a)
-
+	
 	# puts a house on the empty space
 	def place(self, x_opp, y_opp, x_coordinate, y_coordinate, name):
 		for x in range(x_coordinate, x_opp+x_coordinate):
 			for y in range(y_coordinate, y_opp+y_coordinate):
 				self.grid[x, y] = name
 
-		#return(grid)
-
 	def export(self, grid):
 		np.savetxt('grid.csv', grid, fmt='%s', delimiter=',')
-
-	def free_space(self, grid, house, name, x_opp, y_opp):
-		free = 1
-
-		while(free > 0):
-			#for x in set.union(set(range(house.xcor - free, house.xcor - free + 1)), set(range(house.xcor + x_opp + free - 1, house.xcor + x_opp + free))):
-			for x in set.union(set(range(house.xcor - free, house.xcor)), set(range(house.xcor + x_opp, house.xcor + x_opp + free))):
-			#for x in range((house.xcor - free), x_opp + free+ house.xcor):
-				#for y in set.union(set(range(house.ycor - free, house.ycor - free + 1)), set(range(house.ycor + y_opp + free - 1, house.ycor + y_opp + free))):
-				for y in set.union(set(range(house.ycor - free, house.ycor)), set(range(house.ycor + y_opp, house.ycor + y_opp + free))):
-				#for y in range((house.ycor - free), y_opp + free + house.ycor):
-					if (x >= info.grid_length or y >= info.grid_width or x < 0 or y < 0):
-						house.free = free - 1
-						# print(house.free)
-						return free - 1
-					elif (self.grid[x, y] != 'v' and self.grid[x, y] != name):
-						house.free = free - 1
-						# print(house.free)
-						return free - 1
-
-			free+=1
-
-		return
 
 	def score (self, house, scale, default_value, default_free, default_increment):
 		free = (int((house.free - default_free) / scale) * default_increment)
@@ -120,18 +78,15 @@ class Matrix:
 			check_b = self.check(house_b.length, house_b.width, eval("info.house_" + str.lower(house_a.id[:1]) + "_free"), house_b_xcor_new, house_b_ycor_new)
 		else:
 			check_b = self.check(house_b.length, house_b.width, eval("info.house_" + str.lower(house_b.id[:1]) + "_free"), house_b_xcor_new, house_b_ycor_new)
-		# print("checks: {}, {}" .format(check_a, check_b))
 
 		# if houses can be swapped, place houses on new location
 		if (check_a == 0 and check_b == 0):
-			# print("old: house_a.xcor, ycor: {}, {}" .format(house_a.xcor, house_a.ycor))
 			self.place(house_a.length, house_a.width, house_a_xcor_new, house_a_ycor_new, house_a.id)
 			self.place(house_b.length, house_b.width, house_b_xcor_new, house_b_ycor_new, house_b.id)
 
 			# update dictionary
 			house_a.xcor, house_a.ycor = house_a_xcor_new, house_a_ycor_new
 			house_b.xcor, house_b.ycor = house_b_xcor_new, house_b_ycor_new
-			# print("new: house_a.xcor, ycor: {}, {}" .format(house_a.xcor, house_a.ycor))
 
 		# if houses cannot be swapped, place houses on original location
 		else:
