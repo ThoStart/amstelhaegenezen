@@ -48,7 +48,7 @@ def start(matrix, grid):
 
 			 # Update Progress Bar
 			iteration+=1
-			progressbar.printProgressBar(iteration + 1, total, prefix = 'Progress:', suffix = 'Complete', length = 50)
+			progressbar.printProgressBar(iteration, total, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
 			Matrix.swap(matrix, grid, hd.houses_e[i], hd.houses_b[j])
 			total_score_new = score.calculate(grid, matrix)
@@ -70,7 +70,7 @@ def start(matrix, grid):
 
 			# Update Progress Bar
 			iteration+=1
-			progressbar.printProgressBar(iteration + 1, total, prefix = 'Progress:', suffix = 'Complete', length = 50)
+			progressbar.printProgressBar(iteration, total, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
 			Matrix.swap(matrix, grid, hd.houses_b[i], hd.houses_m[j])
 			total_score_new = score.calculate(grid, matrix)
