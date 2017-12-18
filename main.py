@@ -11,18 +11,14 @@ import library.house_dictionary as hd
 import library.tk_export as tk_export
 import library.free_space as free_space
 import library.water as water
+import library.start as start
 import numpy as np
 import timeit
 import sys
 import importlib
 
 def main():
-	chosen_algorithm, water_layout, number_of_runs, visualize_data, plot_data = start()
-
-	# Greedy does not work properly (yet)
-	# if chosen_algorithm == 3 or chosen_algorithm == 4:
-	# 	print("Sorry, this algorithm takes ages. Aborting.")
-	# 	return 1
+	chosen_algorithm, water_layout, number_of_runs, visualize_data, plot_data = start.start()
 
 	# start runtime
 	starttime = timeit.default_timer()
@@ -37,9 +33,6 @@ def main():
 	data = []
 
 	run_iteration = number_of_runs
-
-	# open csv file, write at start
-	#fd = open('score.csv','w')
 
 	while run_iteration > 0:
 		hc_data = 0
@@ -95,9 +88,6 @@ def main():
 		if total_score != 1:
 			data.append(total_score)
 
-			# add total score to csv file
-			#fd.write(str(total_score) + ',')
-
 			# save best grid
 			if total_score > highest_score:
 
@@ -112,7 +102,6 @@ def main():
 				highest_grid = grid
 				highest_score = total_score
 				hc_data_highest = hc_data
-				#matrix.export(highest_grid)
 
 			if total_score < lowest_score:
 				lowest_matrix = matrix
@@ -124,12 +113,10 @@ def main():
 		# reset dict files and values
 		importlib.reload(hd)
 
-	# close csv file
-	#fd.close()
-
 	# stop and show runtime
 	stop = timeit.default_timer()
 	print("runtime: {}" .format(stop-starttime))
+	
 	# use tkinter to visualize grid
 	if visualize_data == 'Y':
 		if number_of_runs == 1:
@@ -158,51 +145,6 @@ def main():
 
 	if plot_data == 'Y' and number_of_runs > 1:
 		plot_export.normal(data, highest_score)
-
-# Request user input the first time
-def start():
-	print("1: Random")
-	print("2: Random + Hill climbing")
-	print("3: Random + Simulated annealing")
-	print("4: Greedy")
-	print("5: Greedy + Hill climbing")
-	print("6: Greedy + Simulated annealing")
-
-	chosen_algorithm = input("Algorithm: ")
-	while (len(str(chosen_algorithm)) > 1 or
-	chosen_algorithm.isdigit() == False or
-	int(chosen_algorithm) > 6 or
-	int(chosen_algorithm) <= 0):
-		print("Invalid input, try again.")
-		chosen_algorithm = input("Algorithm: ")
-
-	print("1:            2:\n◼︎ ◼︎ ◼︎ ◼︎ ◻︎ ◻︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◼︎ ◼︎ ◻︎ ◻︎ ◻︎ ◻︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◼︎ ◼︎ ◻︎ ◻︎ ◻︎ ◻︎   ◻︎ ◻︎ ◻︎ ◻︎ ◻︎ ◻︎\n◻︎ ◻︎ ◻︎ ◻︎ ◼︎ ◼︎   ◻︎ ◻︎ ◻︎ ◻︎ ◻︎ ◻︎\n◻︎ ◻︎ ◻︎ ◻︎ ◼︎ ◼︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◻︎ ◻︎ ◼︎ ◼︎ ◼︎ ◼︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎")
-	water_layout = input("Water layout: ")
-	while (len(str(water_layout)) > 1 or
-	water_layout.isdigit() == False or
-	int(water_layout) > 2 or
-	int(water_layout) <= 0):
-		print("Invalid input, try again.")
-		water_layout = input("Water layout: ")
-
-	number_of_runs = input("Number of runs: ")
-	while (number_of_runs.isdigit() == False or int(number_of_runs) <= 0):
-		print("Invalid input, try again.")
-		number_of_runs = input("Number of runs: ")
-
-	visualize_data = input("Visualize data (y/n): ")
-	while (visualize_data.upper().startswith('Y') == False and
-	visualize_data.upper().startswith('N') == False):
-		print("Invalid input, try again.")
-		visualize_data = input("Visualize data (y/n): ")
-
-	plot_data = input("Plot data (y/n): ")
-	while (plot_data.upper().startswith('Y') == False and
-	plot_data.upper().startswith('N') == False):
-		print("Invalid input, try again.")
-		plot_data = input("Plot data (y/n): ")
-
-	return int(chosen_algorithm), int(water_layout), int(number_of_runs), visualize_data.upper()[0], plot_data.upper()[0]
 
 if __name__ == "__main__":
 	main()
