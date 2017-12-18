@@ -2,6 +2,8 @@ import library.house_dictionary as hd
 import library.setup as info
 
 def calculate_all():
+
+    # calculate free space of all available houses
     calculate_houses('houses_e')
     calculate_houses('houses_b')
     calculate_houses('houses_m')
@@ -177,4 +179,3 @@ def calculate_houses(type):
                 lowest_c = c
 
         houses_t[house].free = lowest_c
-        #print(lowest_c)

@@ -8,17 +8,14 @@ def normal(data, score):
     mu, std = norm.fit(data)
 
     plt.hist(data, bins=25, weights=np.ones_like(data)/len(data), alpha=0.6, color='g')
-    #plt.hist(data, bins=25, normed=True, alpha=0.6, color='g')
 
+    # plot normal distirbution stack overflow(https://stackoverflow.com/questions/20011122/fitting-a-normal-distribution-to-1d-data)
     xmin, xmax = plt.xlim()
     x = np.linspace(xmin, xmax, 100)
     p = norm.pdf(x, mu, std)
     plt.plot(x, p, 'k', linewidth=2)
     title = "Fit results: mu = %.2f,  std = %.2f,\n max score = %i, n = %i" % (mu, std, score, len(data))
     plt.title(title)
-
-    #plt.figure(figsize=(20,10))
-
 
     plt.savefig("export/normal.png")
 

@@ -52,13 +52,13 @@ def main():
 		if chosen_algorithm == 4 or chosen_algorithm == 5 or chosen_algorithm == 6:
 			algorithm.greedy.fill(grid, matrix)
 
-		print("grid success")
+		print("Grid created successfully")
 
-		# execute hill climbing algorithm
+		# execute hill climbing or simulated annealing
 		if chosen_algorithm == 2 or chosen_algorithm == 3 or chosen_algorithm == 5 or chosen_algorithm == 6:
 			total_score = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 
-			if visualize_data == 'Y':	
+			if visualize_data == 'Y':
 				if chosen_algorithm == 2 or chosen_algorithm == 5:
 					tk_export.create(matrix, grid, (str(total_score) + " (before hill climbing)"))
 				else:
@@ -69,8 +69,11 @@ def main():
 			grid_before = matrix_before.grid
 			score_before = total_score
 
+			# execute hill climbing algorithm
 			if chosen_algorithm == 2 or chosen_algorithm == 5:
 				hc_data = algorithm.hill_climbing.start(matrix, grid)
+
+			# execute simulated annealing
 			elif chosen_algorithm == 3 or chosen_algorithm == 6:
 				hc_data = algorithm.SimulatedAnnealing.start(matrix, grid)
 
@@ -92,12 +95,12 @@ def main():
 			if total_score > highest_score:
 
 				if chosen_algorithm == 2 or chosen_algorithm == 3 or chosen_algorithm == 5 or chosen_algorithm == 6:
-					# before HC
+					# before HC/SA
 					highest_matrix_before = matrix_before
 					highest_grid_before = grid_before
 					highest_score_before = score_before
 
-				# after HC
+				# after HC/SA
 				highest_matrix = matrix
 				highest_grid = grid
 				highest_score = total_score

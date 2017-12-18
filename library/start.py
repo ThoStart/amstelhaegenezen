@@ -7,6 +7,7 @@ def start():
     print("5: Greedy + Hill climbing")
     print("6: Greedy + Simulated annealing")
 
+    # let user choose the algorithm
     chosen_algorithm = input("Algorithm: ")
     while (len(str(chosen_algorithm)) > 1 or
     chosen_algorithm.isdigit() == False or
@@ -15,6 +16,7 @@ def start():
         print("Invalid input, try again.")
         chosen_algorithm = input("Algorithm: ")
 
+    # let user choose the water layout
     print("1:            2:\n◼︎ ◼︎ ◼︎ ◼︎ ◻︎ ◻︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◼︎ ◼︎ ◻︎ ◻︎ ◻︎ ◻︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◼︎ ◼︎ ◻︎ ◻︎ ◻︎ ◻︎   ◻︎ ◻︎ ◻︎ ◻︎ ◻︎ ◻︎\n◻︎ ◻︎ ◻︎ ◻︎ ◼︎ ◼︎   ◻︎ ◻︎ ◻︎ ◻︎ ◻︎ ◻︎\n◻︎ ◻︎ ◻︎ ◻︎ ◼︎ ◼︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎\n◻︎ ◻︎ ◼︎ ◼︎ ◼︎ ◼︎   ◼︎ ◼︎ ◻︎ ◻︎ ◼︎ ◼︎")
     water_layout = input("Water layout: ")
     while (len(str(water_layout)) > 1 or
@@ -24,21 +26,25 @@ def start():
         print("Invalid input, try again.")
         water_layout = input("Water layout: ")
 
+    # let user choose the number of runs
     number_of_runs = input("Number of runs: ")
     while (number_of_runs.isdigit() == False or int(number_of_runs) <= 0):
         print("Invalid input, try again.")
         number_of_runs = input("Number of runs: ")
 
+    # let user choose to visualize data with tkinter
     visualize_data = input("Visualize data (y/n): ")
     while (visualize_data.upper().startswith('Y') == False and
     visualize_data.upper().startswith('N') == False):
         print("Invalid input, try again.")
         visualize_data = input("Visualize data (y/n): ")
 
+    # let user choose to plot data with matplotlib
     plot_data = input("Plot data (y/n): ")
     while (plot_data.upper().startswith('Y') == False and
     plot_data.upper().startswith('N') == False):
         print("Invalid input, try again.")
         plot_data = input("Plot data (y/n): ")
 
+    # return chosen variables
     return int(chosen_algorithm), int(water_layout), int(number_of_runs), visualize_data.upper()[0], plot_data.upper()[0]

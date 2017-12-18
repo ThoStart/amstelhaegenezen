@@ -7,14 +7,16 @@ import numpy as np
 import random
 
 def start(matrix, grid):
-	hc_data = []
 
+	# declare variables
+	hc_data = []
 	iteration = 0
 	total = 1000
 
 	print("Hill Climbing:")
 	progressbar.printProgressBar(iteration, total, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
+	# swap all houses with one-another
 	iteration = execute_swap(grid, matrix, hc_data, hd.houses_e, hd.houses_b, iteration, total)
 	iteration = execute_swap(grid, matrix, hc_data, hd.houses_b, hd.houses_m, iteration, total)
 	iteration = execute_swap(grid, matrix, hc_data, hd.houses_m, hd.houses_e, iteration, total)
@@ -23,6 +25,7 @@ def start(matrix, grid):
 	swap_number = len(hc_data)
 	number_of_iterations = total - (swap_number * 2)
 
+	# relocate houses
 	for times in range(int(np.ceil(number_of_iterations / info.number_of_houses))):
 		for i in hd.houses_e:
 			if len(hc_data) >= number_of_iterations + swap_number:
@@ -37,6 +40,7 @@ def start(matrix, grid):
 				break
 			iteration = execute_random(grid, matrix, hc_data,hd.houses_m[i], swap_number, iteration, total)
 
+	# swap all houses with one-another
 	iteration = execute_swap(grid, matrix, hc_data, hd.houses_e, hd.houses_b, iteration, total)
 	iteration = execute_swap(grid, matrix, hc_data, hd.houses_b, hd.houses_m, iteration, total)
 	iteration = execute_swap(grid, matrix, hc_data, hd.houses_m, hd.houses_e, iteration, total)
@@ -44,6 +48,7 @@ def start(matrix, grid):
 
 	return hc_data
 
+# swap house a and house b
 def execute_swap(grid, matrix, hc_data, houses_a, houses_b, iteration, total):
 	total_score = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 
@@ -64,6 +69,7 @@ def execute_swap(grid, matrix, hc_data, houses_a, houses_b, iteration, total):
 
 	return iteration
 
+# relocate house to free place
 def execute_random(grid, matrix, hc_data, house, swap_number, iteration, total):
 
 	if len(hc_data) >= (1000 - swap_number):
@@ -71,6 +77,7 @@ def execute_random(grid, matrix, hc_data, house, swap_number, iteration, total):
 
 	total_score = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 
+	# declare empty space variables
 	house_x_free = eval("info.house_" + str.lower(house.id[:1]) + "_free")
 	house_x_length = eval("info.house_" + str.lower(house.id[:1]) + "_length")
 	house_x_width = eval("info.house_" + str.lower(house.id[:1]) + "_width")
@@ -86,7 +93,6 @@ def execute_random(grid, matrix, hc_data, house, swap_number, iteration, total):
 		check = matrix.check(house_x_length, house_x_width, house_x_free, x_coordinate, y_coordinate)
 		if check == 0:
 			break
-
 
 	# create and place house
 	if check == 0:

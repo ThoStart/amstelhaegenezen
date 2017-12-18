@@ -4,17 +4,15 @@ import library.house_dictionary as hd
 
 def fill(grid, matrix):
 
+    # declare variables
     start_x = int(info.grid_length * 0.5)
     start_y = int(info.grid_width * 0.5)
-
     houses_at_start = []
-
     houses_at_start_2 = []
-
     factor_x = start_x
-
     factor_y = start_y
 
+    # find empty spot in center
     check = matrix.check(info.house_m_length, info.house_m_width, info.house_m_free, factor_x, factor_y)
     if check == 0:
         hd.houses_m[hd.house_m_counter] = House(info.house_m_type, ("M{0:02}".format(hd.house_m_counter)), info.house_m_free, info.house_m_value, factor_x, factor_y, info.house_m_length, info.house_m_width)
@@ -25,6 +23,7 @@ def fill(grid, matrix):
 
     while (hd.house_e_counter - 1 + hd.house_b_counter - 1 + hd.house_m_counter - 1) < info.number_of_houses:
 
+        # find center of each side of the previously placed house
         factor_x = int(factor_x * 0.5)
         factor_y = int(factor_y * 0.5)
 
@@ -32,6 +31,7 @@ def fill(grid, matrix):
 
             if (hd.house_e_counter - 1 + hd.house_b_counter - 1 + hd.house_m_counter - 1) < info.number_of_houses:
 
+                # check and place exact number of maisons, bungalows and eengezinswoningen
                 if hd.house_m_counter <= info.house_m_number:
 
                     check = matrix.check(info.house_m_length, info.house_m_width, info.house_m_free, q.xcor - factor_x, q.ycor - factor_y)
@@ -160,4 +160,3 @@ def fill(grid, matrix):
                         hd.house_e_counter = hd.house_e_counter + 1
 
         houses_at_start = houses_at_start_2
-        
