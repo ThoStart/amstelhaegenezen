@@ -45,19 +45,19 @@ def start(matrix, grid):
 	return hc_data
 
 def execute_swap(grid, matrix, hc_data, houses_a, houses_b, iteration, total):
-	total_score = score.calculate(grid, matrix)
+	total_score = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 
 	for i in houses_a:
 		for j in houses_b:
 			iteration+=1
 			progressbar.printProgressBar(iteration, total, prefix = 'Progress:', suffix = 'Complete', length = 50)
 			Matrix.swap(matrix, grid, houses_a[i], houses_b[j])
-			total_score_new = score.calculate(grid, matrix)
+			total_score_new = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 
 			if total_score_new < total_score:
 				hc_data.append(total_score)
 				Matrix.swap(matrix, grid, houses_a[i], houses_b[j])
-				total_score = score.calculate(grid, matrix)
+				total_score = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 			else:
 				total_score = total_score_new
 				hc_data.append(total_score)
@@ -69,7 +69,7 @@ def execute_random(grid, matrix, hc_data, house, swap_number, iteration, total):
 	if len(hc_data) >= (1000 - swap_number):
 		return 0
 
-	total_score = score.calculate(grid, matrix)
+	total_score = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 
 	house_x_free = eval("info.house_" + str.lower(house.id[:1]) + "_free")
 	house_x_length = eval("info.house_" + str.lower(house.id[:1]) + "_length")
@@ -95,12 +95,12 @@ def execute_random(grid, matrix, hc_data, house, swap_number, iteration, total):
 		Matrix.swap(matrix, grid, house, temp_house)
 		iteration+=1
 		progressbar.printProgressBar(iteration, total, prefix = 'Progress:', suffix = 'Complete', length = 50)
-		total_score_new = score.calculate(grid, matrix)
+		total_score_new = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 
 		if total_score_new < total_score:
 			hc_data.append(total_score)
 			Matrix.swap(matrix, grid, house, temp_house)
-			total_score = score.calculate(grid, matrix)
+			total_score = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 		else:
 			total_score = total_score_new
 			hc_data.append(total_score)

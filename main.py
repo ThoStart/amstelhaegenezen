@@ -56,7 +56,7 @@ def main():
 
 		# execute hill climbing algorithm
 		if chosen_algorithm == 2 or chosen_algorithm == 3 or chosen_algorithm == 5 or chosen_algorithm == 6:
-			total_score = score.calculate(grid, matrix)
+			total_score = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 
 			if visualize_data == 'Y':	
 				if chosen_algorithm == 2 or chosen_algorithm == 5:
@@ -75,14 +75,14 @@ def main():
 				hc_data = algorithm.SimulatedAnnealing.start(matrix, grid)
 
 			if visualize_data == 'Y':
-				total_score = score.calculate(grid, matrix)
+				total_score = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 				if chosen_algorithm == 2 or chosen_algorithm == 5:
 					tk_export.create(matrix, grid, (str(total_score) + " (after hill climbing)"))
 				else:
 					tk_export.create(matrix, grid, (str(total_score) + " (after simulated annealing)"))
 
 		# generate total score
-		total_score = score.calculate(grid, matrix)
+		total_score = score.calculate(grid, matrix, hd.houses_e, hd.houses_b, hd.houses_m)
 
 		# grid fill succeeded
 		if total_score != 1:
@@ -116,7 +116,7 @@ def main():
 	# stop and show runtime
 	stop = timeit.default_timer()
 	print("runtime: {}" .format(stop-starttime))
-	
+
 	# use tkinter to visualize grid
 	if visualize_data == 'Y':
 		if number_of_runs == 1:
